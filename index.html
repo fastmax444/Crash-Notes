@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boards? We Got You Covered! 🔥 | Premium Exam Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0F172A] text-white overflow-x-hidden selection:bg-pink-500/30">
+    
+    <!-- Background Elements -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh"></div>
+        <div class="absolute top-[10%] left-[5%] w-72 h-72 bg-indigo-600/20 blur-[120px] rounded-full floating"></div>
+        <div class="absolute bottom-[20%] right-[10%] w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full floating-delayed"></div>
+        <div class="absolute inset-0 bg-grid opacity-20"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-4 text-center">
+        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-2xl animate-float">
+            Boards? We Got <br/>You Covered! 🔥
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-300/90 max-w-2xl font-medium mb-12">
+            Complete notes, cheat sheets & everything you need to ace it without the stress.
+        </p>
+
+        <!-- Countdown -->
+        <div id="countdown" class="flex gap-4 md:gap-8 mb-16">
+            <div class="timer-box glass-card neon-border-pulse">
+                <span id="days" class="timer-num">00</span>
+                <span class="timer-label text-indigo-400">DAYS</span>
+            </div>
+            <div class="timer-box glass-card neon-border-pulse">
+                <span id="hours" class="timer-num">00</span>
+                <span class="timer-label text-purple-400">HRS</span>
+            </div>
+            <div class="timer-box glass-card neon-border-pulse">
+                <span id="mins" class="timer-num">00</span>
+                <span class="timer-label text-pink-400">MINS</span>
+            </div>
+            <div class="timer-box glass-card neon-border-pulse">
+                <span id="secs" class="timer-num">00</span>
+                <span class="timer-label text-cyan-400">SECS</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center gap-2 mb-20">
+            <p class="text-lg font-bold text-indigo-400 tracking-wider">
+                JOIN <span id="student-counter">0</span>+ STUDENTS ALREADY CRUSHING IT
+            </p>
+            <div class="w-12 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full animate-pulse"></div>
+        </div>
+        
+        <a href="#selector" class="group relative px-12 py-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl font-bold text-xl transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(139,92,246,0.4)]">
+            <span class="relative z-10 flex items-center gap-2">Grab Your Notes <i data-lucide="arrow-right" class="w-6 h-6"></i></span>
+            <div class="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity shine-effect"></div>
+        </a>
+    </section>
+
+    <!-- Class Selector -->
+    <section id="selector" class="py-24 px-4 max-w-7xl mx-auto scroll-mt-20">
+        <h2 class="text-center text-4xl md:text-6xl font-black mb-16 bg-gradient-to-b from-white to-slate-500 bg-clip-text text-transparent">
+            Pick Your Battle ⚡
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <button onclick="toggleGrade('10')" class="grade-card card-3d glass-card p-12 text-left relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
+                    <i data-lucide="target" class="w-24 h-24"></i>
+                </div>
+                <h3 class="text-5xl font-black mb-4 group-hover:text-indigo-400 transition-colors">Class 10th 🎯</h3>
+                <p class="text-slate-400 text-lg">Foundation level notes for all core subjects.</p>
+                <div class="mt-8 flex items-center gap-2 font-bold text-indigo-400">
+                    EXPLORE <i data-lucide="chevron-right"></i>
+                </div>
+            </button>
+            
+            <button onclick="toggleGrade('12')" class="grade-card card-3d glass-card p-12 text-left relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
+                    <i data-lucide="graduation-cap" class="w-24 h-24"></i>
+                </div>
+                <h3 class="text-5xl font-black mb-4 group-hover:text-purple-400 transition-colors">Class 12th 🎓</h3>
+                <p class="text-slate-400 text-lg">Specialized notes for all streams & electives.</p>
+                <div class="mt-8 flex items-center gap-2 font-bold text-purple-400">
+                    EXPLORE <i data-lucide="chevron-right"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Grade 10 Content -->
+        <div id="grade-10-content" class="hidden-section space-y-16 mt-16">
+            <div class="text-center">
+                <h3 class="text-4xl font-bold mb-4 gradient-text-indigo">Class 10 - Everything You Need 📚</h3>
+            </div>
+            
+            <div id="grade-10-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Subject cards injected by JS -->
+            </div>
+
+            <!-- 10th Bundles -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card card-3d p-8 relative neon-border-cyan glow-cyan">
+                    <i data-lucide="zap" class="w-12 h-12 text-cyan-400 mb-4 animate-pulse"></i>
+                    <h4 class="text-3xl font-bold mb-2">CHEAT PACK ⚡</h4>
+                    <p class="text-slate-400 mb-6">Quick Revision: Mind Maps + Formula Sheets + Cheat Sheets</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-3xl font-black text-white">₹149</span>
+                        <button class="px-6 py-3 bg-cyan-600 rounded-xl font-bold hover:scale-105 transition-transform ripple">Grab Now</button>
+                    </div>
+                </div>
+                <div class="glass-card card-3d p-8 relative border-purple-500/50 glow-purple-strong">
+                    <div class="absolute -top-4 -right-4 bg-gradient-to-r from-pink-500 to-purple-600 px-4 py-1 rounded-full text-xs font-black tracking-widest animate-bounce">MOST POPULAR</div>
+                    <i data-lucide="gift" class="w-12 h-12 text-purple-400 mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-2">MEGA BUNDLE 🎁</h4>
+                    <p class="text-slate-400 mb-2">Complete Package: Notes + PYQs + Mind Maps + Cheat Sheets</p>
+                    <p class="text-green-400 font-bold mb-6 flex items-center gap-1"><i data-lucide="trending-down" class="w-4 h-4"></i> Save ₹246!</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-3xl font-black text-white">₹249</span>
+                        <button class="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold hover:scale-110 transition-transform ripple">Grab Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade 12 Content -->
+        <div id="grade-12-content" class="hidden-section space-y-12 mt-16">
+            <div class="text-center">
+                <h3 class="text-4xl font-bold mb-8 gradient-text-purple">Class 12 - Choose Your Stream 🎓</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button onclick="selectStream('pcm')" data-stream="pcm" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-indigo-500 group">
+                    <i data-lucide="atom" class="w-8 h-8 mx-auto mb-2 text-indigo-400 group-hover:rotate-45 transition-transform"></i>
+                    <div class="font-bold">PCM ⚛️</div>
+                </button>
+                <button onclick="selectStream('pcb')" data-stream="pcb" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-green-500 group">
+                    <i data-lucide="dna" class="w-8 h-8 mx-auto mb-2 text-green-400 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold">PCB 🧬</div>
+                </button>
+                <button onclick="selectStream('commerce')" data-stream="commerce" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-pink-500 group">
+                    <i data-lucide="bar-chart-3" class="w-8 h-8 mx-auto mb-2 text-pink-400 group-hover:translate-y-[-5px] transition-transform"></i>
+                    <div class="font-bold">Commerce 📊</div>
+                </button>
+                <button onclick="selectStream('arts')" data-stream="arts" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-orange-500 group">
+                    <i data-lucide="palette" class="w-8 h-8 mx-auto mb-2 text-orange-400 group-hover:rotate-12 transition-transform"></i>
+                    <div class="font-bold">Arts 🎨</div>
+                </button>
+            </div>
+
+            <!-- Subject Area -->
+            <div id="stream-subjects" class="hidden-section space-y-12 py-8">
+                <!-- Individual Stream Sections -->
+                <div id="pcm-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+                <div id="pcb-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+                <div id="commerce-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+                <div id="arts-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+                <!-- 12th Bundles (Shared) -->
+                <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <div class="glass-card card-3d p-8 relative border-cyan-500/50 glow-cyan">
+                        <i data-lucide="zap" class="w-12 h-12 text-cyan-400 mb-4 animate-pulse"></i>
+                        <h4 class="text-3xl font-bold mb-2">CHEAT PACK ⚡</h4>
+                        <p class="text-slate-400 mb-6">Quick Revision: Mind Maps + Formulas + Flashcards</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-black text-white">₹149</span>
+                            <button class="px-6 py-3 bg-cyan-600 rounded-xl font-bold ripple">Grab Now</button>
+                        </div>
+                    </div>
+                    <div class="glass-card card-3d p-8 relative border-pink-500/50 glow-pink-strong">
+                        <div class="absolute -top-4 -right-4 bg-gradient-to-r from-pink-500 to-rose-600 px-4 py-1 rounded-full text-xs font-black animate-pulse">MOST POPULAR</div>
+                        <i data-lucide="sparkles" class="w-12 h-12 text-pink-400 mb-4"></i>
+                        <h4 class="text-3xl font-bold mb-2">MEGA BUNDLE 🎁</h4>
+                        <p class="text-slate-400 mb-6">Complete Stream Notes + Solved PYQs + Formula Bible</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-black text-white">₹199</span>
+                            <button class="px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl font-bold ripple">Grab Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-24 px-4 bg-black/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-4xl md:text-6xl font-black mb-4 gradient-text-indigo">What's Inside? 📦</h2>
+            <p class="text-center text-slate-400 text-xl mb-20 max-w-2xl mx-auto">Everything you'd wish you had the night before exam.</p>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass-card p-8 card-3d text-center border-indigo-500/30">
+                    <div class="w-16 h-16 bg-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="file-text" class="text-indigo-400 w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Complete Notes</h4>
+                    <p class="text-slate-400 text-sm">Chapter-wise, exam-focused, easy to understand</p>
+                </div>
+                <div class="glass-card p-8 card-3d text-center border-purple-500/30">
+                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="help-circle" class="text-purple-400 w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">PYQs Solved</h4>
+                    <p class="text-slate-400 text-sm">Last 5 years questions with step-by-step solutions</p>
+                </div>
+                <div class="glass-card p-8 card-3d text-center border-pink-500/30">
+                    <div class="w-16 h-16 bg-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="brain" class="text-pink-400 w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Mind Maps</h4>
+                    <p class="text-slate-400 text-sm">Visual revision for quick learning & retention</p>
+                </div>
+                <div class="glass-card p-8 card-3d text-center border-cyan-500/30">
+                    <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="layout" class="text-cyan-400 w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Cheat Sheets</h4>
+                    <p class="text-slate-400 text-sm">One-page formulas & key points for quick look</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-24 px-4 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-4xl md:text-6xl font-black mb-4 gradient-text-purple">Don't Just Take Our Word 💬</h2>
+            <p class="text-center text-slate-400 text-xl mb-20">See what students are saying</p>
+            
+            <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Reviews injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 px-4 relative">
+        <div class="max-w-4xl mx-auto text-center glass-card p-16 rounded-[3rem] neon-border-pulse">
+            <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">Boards starting soon. <br/><span class="text-indigo-400">Get prepped now! 🚀</span></h2>
+            <p class="text-xl text-slate-400 mb-12">Don't wait until the last minute (okay, we know you will, but these notes will still save you).</p>
+            <a href="#selector" class="inline-flex items-center gap-4 px-16 py-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl font-black text-2xl hover:scale-110 active:scale-95 transition-all shadow-[0_30px_60px_rgba(139,92,246,0.6)] group">
+                GET YOUR NOTES
+                <i data-lucide="rocket" class="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 border-t border-white/5 text-center text-slate-500 font-medium tracking-wide">
+        <p class="mb-4">Digital products • Instant download • All prices in INR</p>
+        <p class="text-white/80 flex items-center justify-center gap-2">Made by students, for students <span class="text-pink-500 animate-pulse">❤️</span></p>
+    </footer>
+
+    <script type="module" src="logic.js"></script>
+</body>
+</html>
