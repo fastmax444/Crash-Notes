@@ -1,258 +1,836 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boards? We Got You Covered! 🔥 | Premium Exam Notes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-[#0F172A] text-white overflow-x-hidden selection:bg-pink-500/30">
-    
-    <!-- Background Elements -->
-    <div class="fixed inset-0 -z-10 overflow-hidden">
-        <div class="absolute inset-0 bg-mesh"></div>
-        <div class="absolute top-[10%] left-[5%] w-72 h-72 bg-indigo-600/20 blur-[120px] rounded-full floating"></div>
-        <div class="absolute bottom-[20%] right-[10%] w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full floating-delayed"></div>
-        <div class="absolute inset-0 bg-grid opacity-20"></div>
-    </div>
+import React, { useState, useEffect } from 'react';
+import { ShoppingCart, X, Check, Zap, Award, Lock, Download, Star, TrendingUp, Target, Clock, Sparkles, ChevronRight, Menu } from 'lucide-react';
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-4 text-center">
-        <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-2xl animate-float">
-            Boards? We Got <br/>You Covered! 🔥
+const App = () => {
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedStream, setSelectedStream] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({});
+  const [addedItems, setAddedItems] = useState(new Set());
+
+  // Countdown timer
+  useEffect(() => {
+    const targetDate = new Date('2026-02-17T00:00:00');
+    
+    const updateCountdown = () => {
+      const now = new Date();
+      const difference = targetDate - now;
+      
+      setTimeLeft({
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+      });
+    };
+    
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const subjects10th = [
+    {
+      id: 'math-10',
+      name: 'Mathematics',
+      icon: '📐',
+      features: ['Chapter-wise Important Questions', 'All Formulas Sheet', 'PYQs (Last 10 Years)', 'Sample Papers', 'Quick Revision Notes'],
+      price: 29
+    },
+    {
+      id: 'science-10',
+      name: 'Science',
+      icon: '🔬',
+      features: ['Short Notes for All Chapters', 'Diagrams & Illustrations', 'All Reactions & Equations', 'Formulas Sheet', 'PYQs + Sample Papers'],
+      price: 29
+    },
+    {
+      id: 'sst-10',
+      name: 'Social Science',
+      icon: '🌍',
+      features: ['Chapter-wise Short Notes', 'Important Dates & Events', 'Maps & Diagrams Practice', 'PYQs', 'Sample Papers'],
+      price: 29
+    },
+    {
+      id: 'english-10',
+      name: 'English',
+      icon: '📖',
+      features: ['Chapter Summaries', 'Grammar Rules & Tricks', 'Letter/Article Formats', 'PYQs', 'Sample Papers'],
+      price: 29
+    },
+    {
+      id: 'hindi-10',
+      name: 'Hindi',
+      icon: '🖊️',
+      features: ['Chapter Summaries (सारांश)', 'Grammar (व्याकरण)', 'Letter/Essay Formats', 'PYQs', 'Sample Papers'],
+      price: 29
+    }
+  ];
+
+  const subjects12th = {
+    PCM: [
+      {
+        id: 'physics-pcm',
+        name: 'Physics',
+        icon: '⚛️',
+        features: ['All Derivations Step-by-Step', 'Complete Formulas Sheet', 'PYQs (Last 10 Years)', 'Practicals & Diagrams', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'chemistry-pcm',
+        name: 'Chemistry',
+        icon: '🧪',
+        features: ['All Reactions & Mechanisms', 'Equations & Balancing', 'Formulas & Concepts', 'PYQs + Practicals', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'math-pcm',
+        name: 'Mathematics',
+        icon: '📐',
+        features: ['Concept-wise Notes', 'All Formulas & Theorems', 'PYQs (Last 10 Years)', 'Important Questions', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'english-pcm',
+        name: 'English',
+        icon: '📖',
+        features: ['Chapter Summaries', 'Grammar & Writing Skills', 'Notice/Article Formats', 'PYQs', 'Sample Papers'],
+        price: 29
+      }
+    ],
+    PCB: [
+      {
+        id: 'physics-pcb',
+        name: 'Physics',
+        icon: '⚛️',
+        features: ['All Derivations Simplified', 'Complete Formulas', 'PYQs (10 Years)', 'Practicals Guide', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'chemistry-pcb',
+        name: 'Chemistry',
+        icon: '🧪',
+        features: ['Organic + Inorganic Notes', 'All Reactions', 'Formulas & Concepts', 'PYQs + Practicals', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'biology-pcb',
+        name: 'Biology',
+        icon: '🧬',
+        features: ['Chapter-wise Diagrams', 'Short & Long Notes', 'PYQs (10 Years)', 'Practicals & Experiments', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'english-pcb',
+        name: 'English',
+        icon: '📖',
+        features: ['Chapter Summaries', 'Grammar Essentials', 'Writing Formats', 'PYQs', 'Sample Papers'],
+        price: 29
+      }
+    ],
+    Commerce: [
+      {
+        id: 'accountancy',
+        name: 'Accountancy',
+        icon: '📊',
+        features: ['All Formats & Statements', 'Ratio Analysis', 'Journal Entries', 'PYQs', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'business',
+        name: 'Business Studies',
+        icon: '💼',
+        features: ['Case Studies & Examples', 'Concept-wise Notes', 'Diagrams & Charts', 'PYQs', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'economics-com',
+        name: 'Economics',
+        icon: '📈',
+        features: ['All Diagrams & Graphs', 'Theory in Points', 'Macro + Micro Notes', 'PYQs', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'english-com',
+        name: 'English',
+        icon: '📖',
+        features: ['Chapter Summaries', 'Grammar & Writing', 'Business Formats', 'PYQs', 'Sample Papers'],
+        price: 29
+      }
+    ],
+    Arts: [
+      {
+        id: 'history',
+        name: 'History',
+        icon: '🏛️',
+        features: ['Timeline & Important Dates', 'Event-wise Notes', 'Maps Practice', 'PYQs', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'polsci',
+        name: 'Political Science',
+        icon: '🗳️',
+        features: ['Concept-wise Notes', 'Diagrams & Charts', 'Case Studies', 'PYQs', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'economics-arts',
+        name: 'Economics',
+        icon: '📈',
+        features: ['All Diagrams', 'Theory Notes', 'Numerical Practice', 'PYQs', 'Sample Papers'],
+        price: 29
+      },
+      {
+        id: 'english-arts',
+        name: 'English',
+        icon: '📖',
+        features: ['Chapter Summaries', 'Grammar Rules', 'Writing Formats', 'PYQs', 'Sample Papers'],
+        price: 29
+      }
+    ]
+  };
+
+  const bundles = {
+    '10th': [
+      {
+        id: 'quick-10',
+        name: 'Quick Revision Pack',
+        subtitle: 'All 5 Subjects • Perfect for Fast Prep',
+        originalPrice: 145,
+        price: 69,
+        savings: 52,
+        badge: 'MOST POPULAR 🔥',
+        items: ['All Subject Notes', 'Chapter-wise Questions', 'All Formulas', 'PYQs (All Subjects)', 'Sample Papers', 'Quick Revision Sheets'],
+        color: 'purple'
+      },
+      {
+        id: 'mega-10',
+        name: 'Mega Pack',
+        subtitle: 'Complete Boards Domination Package',
+        originalPrice: 175,
+        price: 99,
+        savings: 43,
+        badge: 'BEST VALUE 👑',
+        items: ['Everything in Quick Revision', '✨ BONUS: Night Before Exam Notes', '✨ BONUS: Tips & Tricks PDF', '✨ BONUS: Exam Strategy Guide', '✨ BONUS: Time Management Hacks', '✨ BONUS: Common Mistakes Guide'],
+        color: 'gold'
+      }
+    ],
+    '12th': [
+      {
+        id: 'quick-12',
+        name: 'Quick Revision Pack',
+        subtitle: 'All Stream Subjects • Last Minute Savior',
+        originalPrice: 116,
+        price: 69,
+        savings: 40,
+        badge: 'MOST POPULAR 🔥',
+        items: ['All Subject Notes', 'Chapter-wise Questions', 'Formulas & Derivations', 'PYQs (All Subjects)', 'Sample Papers', 'Quick Revision Sheets'],
+        color: 'purple'
+      },
+      {
+        id: 'mega-12',
+        name: 'Mega Pack',
+        subtitle: 'Complete Success Package',
+        originalPrice: 145,
+        price: 99,
+        savings: 32,
+        badge: 'BEST VALUE 👑',
+        items: ['Everything in Quick Revision', '✨ BONUS: Night Before Exam Notes', '✨ BONUS: Advanced Tips PDF', '✨ BONUS: Exam Strategy Guide', '✨ BONUS: Stress Management Tips', '✨ BONUS: Topper Secrets Guide'],
+        color: 'gold'
+      }
+    ]
+  };
+
+  const testimonials = [
+    { name: 'Aryan Sharma', class: 'Class 10th CBSE', score: '95.6%', text: 'Bhai literally life saver hai yeh notes 🔥 Maths mein 98 aaye!' },
+    { name: 'Priya Singh', class: 'Class 12th PCM', score: '91.2%', text: '2 din mein poora syllabus revise kar liya, no cap! Physics Chemistry dono 95+' },
+    { name: 'Gungun Verma', class: 'Class 10th', score: '92.8%', text: 'Formulas sabke ek jagah mil gaye, perfect! Last minute ke liye best' },
+    { name: 'Sneha Patel', class: 'Class 12th Commerce', score: '93.6%', text: 'Accounts ke saare formats yahan the, exam mein direct same aaya!' },
+    { name: 'Aditya Kumar', class: 'Class 10th', score: '91.4%', text: 'Diagrams itne clear hai ki bas ek baar dekho aur yaad! Science 97 aaye' },
+    { name: 'Ananya Gupta', class: 'Class 12th PCB', score: '92.4%', text: 'Sample papers exactly boards jaisa lage, confidence 100x badh gaya' },
+    { name: 'Kartik Mehta', class: 'Class 10th', score: '89.6%', text: 'Hindi formats ke liye sabse best resource, last minute mein life save kiya' },
+    { name: 'Riya Joshi', class: 'Class 12th Arts', score: '90.8%', text: 'Maps wala section toh next level hai yaar, SST mein 95 laaye' }
+  ];
+
+  const addToCart = (item) => {
+    const existingItem = cart.find(i => i.id === item.id);
+    if (!existingItem) {
+      setCart([...cart, item]);
+      setAddedItems(new Set([...addedItems, item.id]));
+      setTimeout(() => {
+        setAddedItems(prev => {
+          const next = new Set(prev);
+          next.delete(item.id);
+          return next;
+        });
+      }, 2000);
+    }
+  };
+
+  const removeFromCart = (id) => {
+    setCart(cart.filter(item => item.id !== id));
+  };
+
+  const getTotal = () => cart.reduce((sum, item) => sum + item.price, 0);
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white font-['Outfit'] overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-40 right-10 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 left-1/2 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000"></div>
+      </div>
+
+      {/* Floating Cart */}
+      <button
+        onClick={() => setCartOpen(true)}
+        className="fixed top-6 right-6 z-50 bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-110"
+      >
+        <ShoppingCart className="w-6 h-6" />
+        {cart.length > 0 && (
+          <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
+            {cart.length}
+          </span>
+        )}
+      </button>
+
+      {/* Cart Sidebar */}
+      {cartOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setCartOpen(false)}></div>
+          <div className="relative bg-gradient-to-b from-slate-800 to-slate-900 w-full max-w-md p-6 shadow-2xl overflow-y-auto">
+            <button onClick={() => setCartOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">
+              <X className="w-6 h-6" />
+            </button>
+            <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Your Cart 🛒</h2>
+            
+            {cart.length === 0 ? (
+              <p className="text-gray-400 text-center py-12">Your cart is empty bestie! 😢</p>
+            ) : (
+              <>
+                <div className="space-y-4 mb-6">
+                  {cart.map(item => (
+                    <div key={item.id} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 flex justify-between items-center">
+                      <div>
+                        <p className="font-semibold">{item.name}</p>
+                        <p className="text-sm text-purple-300">₹{item.price}</p>
+                      </div>
+                      <button onClick={() => removeFromCart(item.id)} className="text-red-400 hover:text-red-300">
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="border-t border-white/20 pt-4 mb-6">
+                  <div className="flex justify-between text-xl font-bold">
+                    <span>Total:</span>
+                    <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">₹{getTotal()}</span>
+                  </div>
+                </div>
+                
+                <button className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold py-4 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-105">
+                  Proceed to Checkout 🚀
+                </button>
+                <button onClick={() => setCartOpen(false)} className="w-full mt-3 text-gray-400 hover:text-white">
+                  Continue Shopping
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <header className="relative z-10 container mx-auto px-4 pt-20 pb-12 text-center">
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-4 animate-pulse">
+          <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 30px rgba(249, 115, 22, 0.5)' }}>
+            Boards? NO Tension!! 🤌🏻
+          </span>
         </h1>
-        <p class="text-xl md:text-2xl text-slate-300/90 max-w-2xl font-medium mb-12">
-            Complete notes, cheat sheets & everything you need to ace it without the stress.
+        
+        <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>
+          Crash Notes, Cheat Sheets & Everything You Need to CRACK Your Boards 🔥
         </p>
 
-        <!-- Countdown -->
-        <div id="countdown" class="flex gap-4 md:gap-8 mb-16">
-            <div class="timer-box glass-card neon-border-pulse">
-                <span id="days" class="timer-num">00</span>
-                <span class="timer-label text-indigo-400">DAYS</span>
+        {/* Countdown Timer */}
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-6 max-w-2xl mx-auto mb-8 shadow-2xl animate-pulse">
+          <p className="text-sm font-semibold mb-2">⏰ Boards Starting In...</p>
+          <div className="flex justify-center gap-4 text-3xl md:text-5xl font-bold">
+            <div className="flex flex-col items-center">
+              <span>{String(timeLeft.days || 0).padStart(2, '0')}</span>
+              <span className="text-xs mt-1">DAYS</span>
             </div>
-            <div class="timer-box glass-card neon-border-pulse">
-                <span id="hours" class="timer-num">00</span>
-                <span class="timer-label text-purple-400">HRS</span>
+            <span>:</span>
+            <div className="flex flex-col items-center">
+              <span>{String(timeLeft.hours || 0).padStart(2, '0')}</span>
+              <span className="text-xs mt-1">HRS</span>
             </div>
-            <div class="timer-box glass-card neon-border-pulse">
-                <span id="mins" class="timer-num">00</span>
-                <span class="timer-label text-pink-400">MINS</span>
+            <span>:</span>
+            <div className="flex flex-col items-center">
+              <span>{String(timeLeft.minutes || 0).padStart(2, '0')}</span>
+              <span className="text-xs mt-1">MINS</span>
             </div>
-            <div class="timer-box glass-card neon-border-pulse">
-                <span id="secs" class="timer-num">00</span>
-                <span class="timer-label text-cyan-400">SECS</span>
+            <span>:</span>
+            <div className="flex flex-col items-center">
+              <span>{String(timeLeft.seconds || 0).padStart(2, '0')}</span>
+              <span className="text-xs mt-1">SECS</span>
             </div>
+          </div>
         </div>
 
-        <div class="flex flex-col items-center gap-2 mb-20">
-            <p class="text-lg font-bold text-indigo-400 tracking-wider">
-                JOIN <span id="student-counter">0</span>+ STUDENTS ALREADY CRUSHING IT
-            </p>
-            <div class="w-12 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full animate-pulse"></div>
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 inline-flex items-center gap-2 mb-8 shadow-lg">
+          <Target className="w-5 h-5 text-green-400" />
+          <span className="font-semibold">1289 Students Already Winning Their Boards</span>
         </div>
-        
-        <a href="#selector" class="group relative px-12 py-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl font-bold text-xl transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(139,92,246,0.4)]">
-            <span class="relative z-10 flex items-center gap-2">Grab Your Notes <i data-lucide="arrow-right" class="w-6 h-6"></i></span>
-            <div class="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity shine-effect"></div>
-        </a>
-    </section>
 
-    <!-- Class Selector -->
-    <section id="selector" class="py-24 px-4 max-w-7xl mx-auto scroll-mt-20">
-        <h2 class="text-center text-4xl md:text-6xl font-black mb-16 bg-gradient-to-b from-white to-slate-500 bg-clip-text text-transparent">
-            Pick Your Battle ⚡
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {[
+            { icon: <Check className="w-4 h-4" />, text: 'Instant Access' },
+            { icon: <Zap className="w-4 h-4" />, text: 'Latest 2026 Pattern' },
+            { icon: <Award className="w-4 h-4" />, text: 'Board Exam Focused' },
+            { icon: <TrendingUp className="w-4 h-4" />, text: 'Score 90+ Easy' }
+          ].map((item, i) => (
+            <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-2 flex items-center gap-2">
+              <span className="text-green-400">{item.icon}</span>
+              <span className="text-sm font-medium">{item.text}</span>
+            </div>
+          ))}
+        </div>
+
+        <button 
+          onClick={() => scrollToSection('class-selection')}
+          className="bg-gradient-to-r from-purple-600 via-pink-600 to-teal-500 text-white font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-2 inline-flex items-center gap-3"
+        >
+          Get Notes Now 🚀
+        </button>
+      </header>
+
+      {/* Class Selection Section */}
+      <section id="class-selection" className="relative z-10 container mx-auto px-4 py-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Pick Your Battle ⚡
+        </h2>
+        <p className="text-center text-gray-300 mb-12 text-lg">Choose your class and dominate boards 💪</p>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Class 10th Card */}
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all">
+            <button
+              onClick={() => setSelectedClass(selectedClass === '10th' ? null : '10th')}
+              className="w-full text-left"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold">Class 10th 📚</h3>
+                <ChevronRight className={`w-6 h-6 transition-transform ${selectedClass === '10th' ? 'rotate-90' : ''}`} />
+              </div>
+            </button>
+
+            {selectedClass === '10th' && (
+              <div className="space-y-4 animate-fadeIn">
+                {subjects10th.map(subject => (
+                  <div key={subject.id} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:scale-105">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h4 className="text-xl font-bold flex items-center gap-2">
+                          <span className="text-3xl">{subject.icon}</span>
+                          {subject.name}
+                        </h4>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-purple-400">₹{subject.price}</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-2 mb-4">
+                      {subject.features.map((feature, i) => (
+                        <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                          <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      onClick={() => addToCart(subject)}
+                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2"
+                    >
+                      {addedItems.has(subject.id) ? (
+                        <>
+                          <Check className="w-5 h-5" />
+                          Added to Cart!
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="w-5 h-5" />
+                          Add to Cart
+                        </>
+                      )}
+                    </button>
+                  </div>
+                ))}
+
+                {/* Bundles for 10th */}
+                <div className="mt-8">
+                  <h4 className="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                    Save Big with Bundles 💰
+                  </h4>
+                  <div className="space-y-4">
+                    {bundles['10th'].map(bundle => (
+                      <div key={bundle.id} className={`bg-white/5 backdrop-blur-md border-2 ${bundle.color === 'gold' ? 'border-yellow-500/50' : 'border-purple-500/50'} rounded-xl p-6 relative`}>
+                        <div className={`absolute -top-3 right-4 ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} px-4 py-1 rounded-full text-sm font-bold animate-pulse`}>
+                          {bundle.badge}
+                        </div>
+                        <h5 className="text-2xl font-bold mb-1">{bundle.name}</h5>
+                        <p className="text-gray-400 text-sm mb-4">{bundle.subtitle}</p>
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-gray-500 line-through">₹{bundle.originalPrice}</span>
+                          <span className={`text-4xl font-bold ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-400 to-orange-400' : 'bg-gradient-to-r from-purple-400 to-pink-400'} bg-clip-text text-transparent`}>
+                            ₹{bundle.price}
+                          </span>
+                          <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Save {bundle.savings}%</span>
+                        </div>
+                        <ul className="space-y-2 mb-4">
+                          {bundle.items.map((item, i) => (
+                            <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                              {item.includes('✨') ? (
+                                <Sparkles className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
+                              ) : (
+                                <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                              )}
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <button
+                          onClick={() => addToCart({ id: bundle.id, name: bundle.name, price: bundle.price })}
+                          className={`w-full ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} text-white font-bold py-4 rounded-lg hover:shadow-lg transition-all hover:scale-105`}
+                        >
+                          {bundle.color === 'gold' ? 'Get Mega Pack 👑' : 'Grab Quick Revision 🚀'}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Class 12th Card */}
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all">
+            <button
+              onClick={() => {
+                setSelectedClass(selectedClass === '12th' ? null : '12th');
+                if (selectedClass !== '12th') setSelectedStream(null);
+              }}
+              className="w-full text-left"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold">Class 12th 🎓</h3>
+                <ChevronRight className={`w-6 h-6 transition-transform ${selectedClass === '12th' ? 'rotate-90' : ''}`} />
+              </div>
+            </button>
+
+            {selectedClass === '12th' && (
+              <div className="space-y-6 animate-fadeIn">
+                {/* Stream Selection */}
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {[
+                    { id: 'PCB', label: 'PCB 🩺', icon: '🩺' },
+                    { id: 'PCM', label: 'PCM ⚙️', icon: '⚙️' },
+                    { id: 'Commerce', label: 'Commerce 💼', icon: '💼' },
+                    { id: 'Arts', label: 'Arts 🎨', icon: '🎨' }
+                  ].map(stream => (
+                    <button
+                      key={stream.id}
+                      onClick={() => setSelectedStream(stream.id)}
+                      className={`px-6 py-3 rounded-full font-semibold transition-all ${
+                        selectedStream === stream.id
+                          ? 'bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg shadow-purple-500/50 scale-105'
+                          : 'bg-white/5 border border-white/10 hover:border-purple-500/50'
+                      }`}
+                    >
+                      {stream.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Subjects for selected stream */}
+                {selectedStream && (
+                  <div className="space-y-4">
+                    {subjects12th[selectedStream].map(subject => (
+                      <div key={subject.id} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:scale-105">
+                        <div className="flex items-start justify-between mb-4">
+                          <div>
+                            <h4 className="text-xl font-bold flex items-center gap-2">
+                              <span className="text-3xl">{subject.icon}</span>
+                              {subject.name}
+                            </h4>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-purple-400">₹{subject.price}</p>
+                          </div>
+                        </div>
+                        <ul className="space-y-2 mb-4">
+                          {subject.features.map((feature, i) => (
+                            <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                              <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <button
+                          onClick={() => addToCart(subject)}
+                          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2"
+                        >
+                          {addedItems.has(subject.id) ? (
+                            <>
+                              <Check className="w-5 h-5" />
+                              Added to Cart!
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingCart className="w-5 h-5" />
+                              Add to Cart
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    ))}
+
+                    {/* Bundles for 12th */}
+                    <div className="mt-8">
+                      <h4 className="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                        Save Big with Bundles 💰
+                      </h4>
+                      <div className="space-y-4">
+                        {bundles['12th'].map(bundle => (
+                          <div key={bundle.id} className={`bg-white/5 backdrop-blur-md border-2 ${bundle.color === 'gold' ? 'border-yellow-500/50' : 'border-purple-500/50'} rounded-xl p-6 relative`}>
+                            <div className={`absolute -top-3 right-4 ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} px-4 py-1 rounded-full text-sm font-bold animate-pulse`}>
+                              {bundle.badge}
+                            </div>
+                            <h5 className="text-2xl font-bold mb-1">{bundle.name}</h5>
+                            <p className="text-gray-400 text-sm mb-4">{bundle.subtitle}</p>
+                            <div className="flex items-center gap-3 mb-4">
+                              <span className="text-gray-500 line-through">₹{bundle.originalPrice}</span>
+                              <span className={`text-4xl font-bold ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-400 to-orange-400' : 'bg-gradient-to-r from-purple-400 to-pink-400'} bg-clip-text text-transparent`}>
+                                ₹{bundle.price}
+                              </span>
+                              <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Save {bundle.savings}%</span>
+                            </div>
+                            <ul className="space-y-2 mb-4">
+                              {bundle.items.map((item, i) => (
+                                <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                                  {item.includes('✨') ? (
+                                    <Sparkles className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
+                                  ) : (
+                                    <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                                  )}
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <button
+                              onClick={() => addToCart({ id: bundle.id, name: bundle.name, price: bundle.price })}
+                              className={`w-full ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} text-white font-bold py-4 rounded-lg hover:shadow-lg transition-all hover:scale-105`}
+                            >
+                              {bundle.color === 'gold' ? 'Get Mega Pack 👑' : 'Grab Quick Revision 🚀'}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="relative z-10 container mx-auto px-4 py-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Why 1289+ Students Trust Us 💯
         </h2>
         
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-            <button onclick="toggleGrade('10')" class="grade-card card-3d glass-card p-12 text-left relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
-                    <i data-lucide="target" class="w-24 h-24"></i>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
+          {[
+            { icon: <Download className="w-8 h-8" />, title: 'Instant Access', desc: 'Download Immediately After Payment' },
+            { icon: <Award className="w-8 h-8" />, title: 'Comprehensive Coverage', desc: 'Everything You Need in One Place' },
+            { icon: <Zap className="w-8 h-8" />, title: 'Quick Revision Friendly', desc: 'Save Hours of Study Time' },
+            { icon: <Target className="w-8 h-8" />, title: 'Exam Focused Content', desc: 'Only What Matters for Boards' },
+            { icon: <TrendingUp className="w-8 h-8" />, title: 'Latest 2026 Pattern', desc: 'Updated According to New Pattern' },
+            { icon: <Lock className="w-8 h-8" />, title: 'Secure & Trusted', desc: 'Safe Payment • Instant Delivery' }
+          ].map((item, i) => (
+            <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:scale-105 text-center">
+              <div className="text-purple-400 flex justify-center mb-4">{item.icon}</div>
+              <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+              <p className="text-gray-400 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative z-10 container mx-auto px-4 py-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          What Students Are Saying 🗣️
+        </h2>
+        <p className="text-center text-gray-300 mb-12 text-lg">Real Results from Real Students</p>
+
+        <div className="overflow-x-auto pb-8 hide-scrollbar">
+          <div className="flex gap-6 w-max px-4">
+            {testimonials.map((testimonial, i) => (
+              <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 w-80 hover:border-purple-500/50 transition-all hover:scale-105">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
                 </div>
-                <h3 class="text-5xl font-black mb-4 group-hover:text-indigo-400 transition-colors">Class 10th 🎯</h3>
-                <p class="text-slate-400 text-lg">Foundation level notes for all core subjects.</p>
-                <div class="mt-8 flex items-center gap-2 font-bold text-indigo-400">
-                    EXPLORE <i data-lucide="chevron-right"></i>
+                <p className="text-gray-300 mb-4 italic">"{testimonial.text}"</p>
+                <div className="border-t border-white/10 pt-4">
+                  <p className="font-bold">{testimonial.name}</p>
+                  <p className="text-sm text-gray-400">{testimonial.class}</p>
+                  <p className="text-sm text-purple-400 font-semibold">{testimonial.score}</p>
                 </div>
-            </button>
-            
-            <button onclick="toggleGrade('12')" class="grade-card card-3d glass-card p-12 text-left relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
-                    <i data-lucide="graduation-cap" class="w-24 h-24"></i>
-                </div>
-                <h3 class="text-5xl font-black mb-4 group-hover:text-purple-400 transition-colors">Class 12th 🎓</h3>
-                <p class="text-slate-400 text-lg">Specialized notes for all streams & electives.</p>
-                <div class="mt-8 flex items-center gap-2 font-bold text-purple-400">
-                    EXPLORE <i data-lucide="chevron-right"></i>
-                </div>
-            </button>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <!-- Grade 10 Content -->
-        <div id="grade-10-content" class="hidden-section space-y-16 mt-16">
-            <div class="text-center">
-                <h3 class="text-4xl font-bold mb-4 gradient-text-indigo">Class 10 - Everything You Need 📚</h3>
-            </div>
-            
-            <div id="grade-10-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <!-- Subject cards injected by JS -->
-            </div>
+        <p className="text-center text-xl font-bold mt-8 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+          Join 1289+ Students Crushing Their Boards 🏆
+        </p>
+      </section>
 
-            <!-- 10th Bundles -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card card-3d p-8 relative neon-border-cyan glow-cyan">
-                    <i data-lucide="zap" class="w-12 h-12 text-cyan-400 mb-4 animate-pulse"></i>
-                    <h4 class="text-3xl font-bold mb-2">CHEAT PACK ⚡</h4>
-                    <p class="text-slate-400 mb-6">Quick Revision: Mind Maps + Formula Sheets + Cheat Sheets</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-3xl font-black text-white">₹149</span>
-                        <button class="px-6 py-3 bg-cyan-600 rounded-xl font-bold hover:scale-105 transition-transform ripple">Grab Now</button>
-                    </div>
-                </div>
-                <div class="glass-card card-3d p-8 relative border-purple-500/50 glow-purple-strong">
-                    <div class="absolute -top-4 -right-4 bg-gradient-to-r from-pink-500 to-purple-600 px-4 py-1 rounded-full text-xs font-black tracking-widest animate-bounce">MOST POPULAR</div>
-                    <i data-lucide="gift" class="w-12 h-12 text-purple-400 mb-4"></i>
-                    <h4 class="text-3xl font-bold mb-2">MEGA BUNDLE 🎁</h4>
-                    <p class="text-slate-400 mb-2">Complete Package: Notes + PYQs + Mind Maps + Cheat Sheets</p>
-                    <p class="text-green-400 font-bold mb-6 flex items-center gap-1"><i data-lucide="trending-down" class="w-4 h-4"></i> Save ₹246!</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-3xl font-black text-white">₹249</span>
-                        <button class="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold hover:scale-110 transition-transform ripple">Grab Now</button>
-                    </div>
-                </div>
+      {/* Urgency Section */}
+      <section className="relative z-10 container mx-auto px-4 py-16">
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl p-12 text-center shadow-2xl">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4">Boards Starting Soon! ⏰</h2>
+          <p className="text-xl md:text-2xl mb-8">Get Prepared RIGHT NOW or Regret Later 📚⚡</p>
+          
+          {/* Countdown Timer */}
+          <div className="bg-black/30 backdrop-blur-md rounded-2xl p-6 max-w-2xl mx-auto mb-12">
+            <div className="flex justify-center gap-4 text-3xl md:text-5xl font-bold">
+              <div className="flex flex-col items-center">
+                <span>{String(timeLeft.days || 0).padStart(2, '0')}</span>
+                <span className="text-xs mt-1">DAYS</span>
+              </div>
+              <span>:</span>
+              <div className="flex flex-col items-center">
+                <span>{String(timeLeft.hours || 0).padStart(2, '0')}</span>
+                <span className="text-xs mt-1">HRS</span>
+              </div>
+              <span>:</span>
+              <div className="flex flex-col items-center">
+                <span>{String(timeLeft.minutes || 0).padStart(2, '0')}</span>
+                <span className="text-xs mt-1">MINS</span>
+              </div>
+              <span>:</span>
+              <div className="flex flex-col items-center">
+                <span>{String(timeLeft.seconds || 0).padStart(2, '0')}</span>
+                <span className="text-xs mt-1">SECS</span>
+              </div>
             </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {[
+              "💪 Don't let boards scare you fam, we got your back",
+              "✨ Your 90+ success story starts with one click",
+              "🏆 Join the winning squad, flex them marks",
+              "🤝 Last minute? We got you covered bestie, no stress",
+              "🚀 From panic mode to topper mode in one click",
+              "😎 Be the one everyone asks notes from",
+              "🔥 Stop scrolling, start scoring. It's that simple",
+              "💯 Your parents' proud moment is just ₹99 away"
+            ].map((text, i) => (
+              <div key={i} className="bg-black/20 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                <p className="font-semibold">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="relative z-10 container mx-auto px-4 py-20 text-center">
+        <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+          Ready to Ace Your Boards? 🎯
+        </h2>
+        <p className="text-xl md:text-2xl text-gray-300 mb-12">Join 1289 Students Who Made the Smart Choice</p>
+
+        <button 
+          onClick={() => scrollToSection('class-selection')}
+          className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold text-xl px-16 py-6 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-3 inline-flex items-center gap-3 animate-pulse mb-8"
+        >
+          Get Your Notes NOW 🚀
+        </button>
+
+        <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-300 mb-8">
+          <span className="flex items-center gap-2">
+            <Zap className="w-4 h-4 text-orange-400" />
+            Instant Access
+          </span>
+          <span className="flex items-center gap-2">
+            <Lock className="w-4 h-4 text-green-400" />
+            Secure Payment
+          </span>
+          <span className="flex items-center gap-2">
+            <Award className="w-4 h-4 text-purple-400" />
+            1289 Students Trust Us
+          </span>
         </div>
 
-        <!-- Grade 12 Content -->
-        <div id="grade-12-content" class="hidden-section space-y-12 mt-16">
-            <div class="text-center">
-                <h3 class="text-4xl font-bold mb-8 gradient-text-purple">Class 12 - Choose Your Stream 🎓</h3>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <button onclick="selectStream('pcm')" data-stream="pcm" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-indigo-500 group">
-                    <i data-lucide="atom" class="w-8 h-8 mx-auto mb-2 text-indigo-400 group-hover:rotate-45 transition-transform"></i>
-                    <div class="font-bold">PCM ⚛️</div>
-                </button>
-                <button onclick="selectStream('pcb')" data-stream="pcb" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-green-500 group">
-                    <i data-lucide="dna" class="w-8 h-8 mx-auto mb-2 text-green-400 group-hover:scale-110 transition-transform"></i>
-                    <div class="font-bold">PCB 🧬</div>
-                </button>
-                <button onclick="selectStream('commerce')" data-stream="commerce" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-pink-500 group">
-                    <i data-lucide="bar-chart-3" class="w-8 h-8 mx-auto mb-2 text-pink-400 group-hover:translate-y-[-5px] transition-transform"></i>
-                    <div class="font-bold">Commerce 📊</div>
-                </button>
-                <button onclick="selectStream('arts')" data-stream="arts" class="stream-card glass-card p-6 text-center card-3d transition-all hover:border-orange-500 group">
-                    <i data-lucide="palette" class="w-8 h-8 mx-auto mb-2 text-orange-400 group-hover:rotate-12 transition-transform"></i>
-                    <div class="font-bold">Arts 🎨</div>
-                </button>
-            </div>
-
-            <!-- Subject Area -->
-            <div id="stream-subjects" class="hidden-section space-y-12 py-8">
-                <!-- Individual Stream Sections -->
-                <div id="pcm-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-                <div id="pcb-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-                <div id="commerce-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-                <div id="arts-subjects" class="hidden-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-
-                <!-- 12th Bundles (Shared) -->
-                <div class="grid md:grid-cols-2 gap-8 mt-12">
-                    <div class="glass-card card-3d p-8 relative border-cyan-500/50 glow-cyan">
-                        <i data-lucide="zap" class="w-12 h-12 text-cyan-400 mb-4 animate-pulse"></i>
-                        <h4 class="text-3xl font-bold mb-2">CHEAT PACK ⚡</h4>
-                        <p class="text-slate-400 mb-6">Quick Revision: Mind Maps + Formulas + Flashcards</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-3xl font-black text-white">₹149</span>
-                            <button class="px-6 py-3 bg-cyan-600 rounded-xl font-bold ripple">Grab Now</button>
-                        </div>
-                    </div>
-                    <div class="glass-card card-3d p-8 relative border-pink-500/50 glow-pink-strong">
-                        <div class="absolute -top-4 -right-4 bg-gradient-to-r from-pink-500 to-rose-600 px-4 py-1 rounded-full text-xs font-black animate-pulse">MOST POPULAR</div>
-                        <i data-lucide="sparkles" class="w-12 h-12 text-pink-400 mb-4"></i>
-                        <h4 class="text-3xl font-bold mb-2">MEGA BUNDLE 🎁</h4>
-                        <p class="text-slate-400 mb-6">Complete Stream Notes + Solved PYQs + Formula Bible</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-3xl font-black text-white">₹199</span>
-                            <button class="px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl font-bold ripple">Grab Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div className="flex flex-wrap justify-center gap-4">
+          {[
+            '✅ Download Immediately',
+            '✅ Lifetime Access',
+            '✅ All Updates Free',
+            '✅ Score 90+ Guaranteed*'
+          ].map((item, i) => (
+            <span key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-2 text-sm">
+              {item}
+            </span>
+          ))}
         </div>
-    </section>
+      </section>
 
-    <!-- Features -->
-    <section class="py-24 px-4 bg-black/20">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-4xl md:text-6xl font-black mb-4 gradient-text-indigo">What's Inside? 📦</h2>
-            <p class="text-center text-slate-400 text-xl mb-20 max-w-2xl mx-auto">Everything you'd wish you had the night before exam.</p>
-            
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="glass-card p-8 card-3d text-center border-indigo-500/30">
-                    <div class="w-16 h-16 bg-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="file-text" class="text-indigo-400 w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">Complete Notes</h4>
-                    <p class="text-slate-400 text-sm">Chapter-wise, exam-focused, easy to understand</p>
-                </div>
-                <div class="glass-card p-8 card-3d text-center border-purple-500/30">
-                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="help-circle" class="text-purple-400 w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">PYQs Solved</h4>
-                    <p class="text-slate-400 text-sm">Last 5 years questions with step-by-step solutions</p>
-                </div>
-                <div class="glass-card p-8 card-3d text-center border-pink-500/30">
-                    <div class="w-16 h-16 bg-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="brain" class="text-pink-400 w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">Mind Maps</h4>
-                    <p class="text-slate-400 text-sm">Visual revision for quick learning & retention</p>
-                </div>
-                <div class="glass-card p-8 card-3d text-center border-cyan-500/30">
-                    <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="layout" class="text-cyan-400 w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">Cheat Sheets</h4>
-                    <p class="text-slate-400 text-sm">One-page formulas & key points for quick look</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      {/* Footer */}
+      <footer className="relative z-10 border-t border-white/10 py-8 text-center text-gray-400">
+        <p>Made with 💜 for Board Students</p>
+        <p className="text-sm mt-2">© 2026 Boards Notes. All rights reserved.</p>
+      </footer>
 
-    <!-- Reviews -->
-    <section class="py-24 px-4 overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-4xl md:text-6xl font-black mb-4 gradient-text-purple">Don't Just Take Our Word 💬</h2>
-            <p class="text-center text-slate-400 text-xl mb-20">See what students are saying</p>
-            
-            <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Reviews injected by JS -->
-            </div>
-        </div>
-    </section>
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+      `}</style>
+    </div>
+  );
+};
 
-    <!-- Final CTA -->
-    <section class="py-32 px-4 relative">
-        <div class="max-w-4xl mx-auto text-center glass-card p-16 rounded-[3rem] neon-border-pulse">
-            <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">Boards starting soon. <br/><span class="text-indigo-400">Get prepped now! 🚀</span></h2>
-            <p class="text-xl text-slate-400 mb-12">Don't wait until the last minute (okay, we know you will, but these notes will still save you).</p>
-            <a href="#selector" class="inline-flex items-center gap-4 px-16 py-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl font-black text-2xl hover:scale-110 active:scale-95 transition-all shadow-[0_30px_60px_rgba(139,92,246,0.6)] group">
-                GET YOUR NOTES
-                <i data-lucide="rocket" class="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"></i>
-            </a>
-        </div>
-    </section>
-
-    <footer class="py-12 px-4 border-t border-white/5 text-center text-slate-500 font-medium tracking-wide">
-        <p class="mb-4">Digital products • Instant download • All prices in INR</p>
-        <p class="text-white/80 flex items-center justify-center gap-2">Made by students, for students <span class="text-pink-500 animate-pulse">❤️</span></p>
-    </footer>
-
-    <script type="module" src="logic.js"></script>
-</body>
-</html>
+export default App;
