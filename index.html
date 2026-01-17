@@ -83,8 +83,8 @@
     </div>
 
     <!-- Cart Button -->
-    <button id="cartBtn" class="fixed top-4 right-4 md:top-6 md:right-6 z-[60] bg-gradient-to-r from-purple-600 to-pink-600 p-3 md:p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-110">
-        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button id="cartBtn" class="fixed top-6 right-6 z-[60] bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-110">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
         </svg>
         <span id="cartCount" class="hidden absolute -top-2 -right-2 bg-orange-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">0</span>
@@ -105,7 +105,7 @@
     </div>
 
     <!-- Header Section -->
-    <header class="relative z-10 container mx-auto px-4 pt-12 md:pt-20 pb-8 md:pb-12 text-center">
+    <header class="relative z-10 container mx-auto px-4 pt-20 md:pt-20 pb-8 md:pb-12 text-center">
         <h1 class="text-3xl md:text-7xl font-extrabold mb-4 leading-tight">
             <span class="gradient-text block md:inline" style="text-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(236, 72, 153, 0.6);">
                 Boards? NO Tension!! 💯
@@ -234,11 +234,11 @@
         <p class="text-center text-gray-300 mb-8 md:mb-12 text-base md:text-lg px-4">Real Results from Real Students</p>
 
         <div class="space-y-4 md:space-y-6">
-            <div class="testimonial-row overflow-hidden">
-                <div id="testimonials-row1" class="flex gap-4 md:gap-6 scroll-left"></div>
+            <div class="overflow-x-auto pb-4 hide-scrollbar">
+                <div id="testimonials-row1" class="flex gap-4 md:gap-6 px-4"></div>
             </div>
-            <div class="testimonial-row overflow-hidden">
-                <div id="testimonials-row2" class="flex gap-4 md:gap-6 scroll-right"></div>
+            <div class="overflow-x-auto pb-4 hide-scrollbar">
+                <div id="testimonials-row2" class="flex gap-4 md:gap-6 px-4"></div>
             </div>
         </div>
     </section>
@@ -653,8 +653,8 @@
         const row1Container = document.getElementById('testimonials-row1');
         const row2Container = document.getElementById('testimonials-row2');
 
-        row1Container.innerHTML = row1.map(createTestimonialCard).join('') + row1.map(createTestimonialCard).join('');
-        row2Container.innerHTML = row2.map(createTestimonialCard).join('') + row2.map(createTestimonialCard).join('');
+        row1Container.innerHTML = row1.map(createTestimonialCard).join('');
+        row2Container.innerHTML = row2.map(createTestimonialCard).join('');
     </script>
 </body>
 </html>
