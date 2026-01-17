@@ -8,51 +8,28 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
         
-        body {
-            font-family: 'Outfit', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; }
         
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
         
-        @keyframes scroll-right {
-            0% {
-                transform: translateX(-50%);
-            }
-            100% {
-                transform: translateX(0);
-            }
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
         
-        .animate-fadeIn {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
+        .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
         .gradient-text {
             background: linear-gradient(to right, #fb923c, #ec4899, #a855f7);
             -webkit-background-clip: text;
@@ -60,22 +37,14 @@
             background-clip: text;
         }
         
-        .scroll-left {
-            animation: scroll-left 40s linear infinite;
-        }
-        
-        .scroll-right {
-            animation: scroll-right 40s linear infinite;
-        }
-        
+        .scroll-left { animation: scrollLeft 40s linear infinite; }
+        .scroll-right { animation: scrollRight 40s linear infinite; }
         .testimonial-row:hover .scroll-left,
-        .testimonial-row:hover .scroll-right {
-            animation-play-state: paused;
-        }
+        .testimonial-row:hover .scroll-right { animation-play-state: paused; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen">
-    <!-- Animated Background (Less Intense) -->
+    <!-- Animated Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
         <div class="absolute top-40 right-10 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style="animation-delay: 1s;"></div>
@@ -92,9 +61,9 @@
 
     <!-- Cart Sidebar -->
     <div id="cartSidebar" class="hidden fixed inset-0 z-50">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeCart()"></div>
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="UI.closeCart()"></div>
         <div class="absolute right-0 top-0 bottom-0 bg-gradient-to-b from-slate-800 to-slate-900 w-full max-w-md p-6 shadow-2xl overflow-y-auto">
-            <button onclick="closeCart()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+            <button onclick="UI.closeCart()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -169,22 +138,20 @@
             </div>
         </div>
 
-        <button onclick="scrollToSection('class-selection')" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-5 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-2 inline-flex items-center gap-3">
+        <button onclick="UI.scrollTo('class-selection')" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-5 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-2 inline-flex items-center gap-3">
             Get Notes Now 🚀
         </button>
     </header>
 
     <!-- Class Selection Section -->
     <section id="class-selection" class="relative z-10 container mx-auto px-4 py-12 md:py-16">
-        <h2 class="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4 gradient-text">
-            Pick Your Battle ⚡
-        </h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4 gradient-text">Pick Your Battle ⚡</h2>
         <p class="text-center text-gray-300 mb-8 md:mb-12 text-base md:text-lg">Choose your class and dominate boards 💪</p>
 
         <div class="max-w-6xl mx-auto">
             <!-- Class Selection Buttons -->
-            <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8" id="class-buttons">
-                <button onclick="toggleClass('10th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
+            <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                <button onclick="App.toggleClass('10th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
                     <div class="flex items-center justify-between">
                         <h3 class="text-lg md:text-3xl font-bold">Class 10th 📚</h3>
                         <svg id="chevron-10th" class="w-5 h-5 md:w-6 md:h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +160,7 @@
                     </div>
                 </button>
 
-                <button onclick="toggleClass('12th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
+                <button onclick="App.toggleClass('12th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
                     <div class="flex items-center justify-between">
                         <h3 class="text-lg md:text-3xl font-bold">Class 12th 🎓</h3>
                         <svg id="chevron-12th" class="w-5 h-5 md:w-6 md:h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -207,9 +174,7 @@
             <div id="class-10th" class="hidden">
                 <div id="subjects-10th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8"></div>
                 <div>
-                    <h4 class="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                        Save Big with Bundles 💰
-                    </h4>
+                    <h4 class="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Save Big with Bundles 💰</h4>
                     <div id="bundles-10th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"></div>
                 </div>
             </div>
@@ -218,28 +183,26 @@
             <div id="class-12th" class="hidden">
                 <!-- Stream Selection -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
-                    <button onclick="selectStream('PCM', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                    <button onclick="App.selectStream('PCM', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
                         <div class="text-xl md:text-2xl mb-1">⚙️</div>
                         <div class="text-sm md:text-base">PCM</div>
                     </button>
-                    <button onclick="selectStream('PCB', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                    <button onclick="App.selectStream('PCB', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
                         <div class="text-xl md:text-2xl mb-1">🩺</div>
                         <div class="text-sm md:text-base">PCB</div>
                     </button>
-                    <button onclick="selectStream('Commerce', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                    <button onclick="App.selectStream('Commerce', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
                         <div class="text-xl md:text-2xl mb-1">💼</div>
                         <div class="text-sm md:text-base">Commerce</div>
                     </button>
-                    <button onclick="selectStream('Arts', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                    <button onclick="App.selectStream('Arts', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
                         <div class="text-xl md:text-2xl mb-1">🎨</div>
                         <div class="text-sm md:text-base">Arts</div>
                     </button>
                 </div>
                 <div id="subjects-12th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8"></div>
                 <div id="bundles-12th-container" class="hidden">
-                    <h4 class="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                        Save Big with Bundles 💰
-                    </h4>
+                    <h4 class="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Save Big with Bundles 💰</h4>
                     <div id="bundles-12th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"></div>
                 </div>
             </div>
@@ -248,17 +211,15 @@
 
     <!-- Testimonials Section -->
     <section class="relative z-10 py-12 md:py-16 overflow-hidden">
-        <h2 class="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4 gradient-text px-4">
-            What Students Are Saying 🗣️
-        </h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4 gradient-text px-4">What Students Are Saying 🗣️</h2>
         <p class="text-center text-gray-300 mb-8 md:mb-12 text-base md:text-lg px-4">Real Results from Real Students</p>
 
         <div class="space-y-4 md:space-y-6">
             <div class="overflow-hidden">
-                <div id="testimonials-row1" class="flex gap-4 md:gap-6 auto-scroll w-max"></div>
+                <div id="testimonials-row1" class="flex gap-4 md:gap-6 w-max"></div>
             </div>
             <div class="overflow-hidden">
-                <div id="testimonials-row2" class="flex gap-4 md:gap-6 auto-scroll-right w-max"></div>
+                <div id="testimonials-row2" class="flex gap-4 md:gap-6 w-max"></div>
             </div>
         </div>
     </section>
@@ -270,218 +231,20 @@
     </footer>
 
     <script>
-        let cart = [];
-        let selectedStream = null;
-        let currentOpenClass = null;
-
-        function openCart() {
-            document.getElementById('cartSidebar').classList.remove('hidden');
-            updateCartDisplay();
-        }
-
-        function closeCart() {
-            document.getElementById('cartSidebar').classList.add('hidden');
-        }
-
-        function addToCart(item) {
-            const existing = cart.find(i => i.id === item.id);
-            if (!existing) {
-                cart.push(item);
-                updateCartCount();
-                showAddedFeedback(item.id);
-            }
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            updateCartCount();
-            updateCartDisplay();
-        }
-
-        function updateCartCount() {
-            const countEl = document.getElementById('cartCount');
-            if (cart.length > 0) {
-                countEl.textContent = cart.length;
-                countEl.classList.remove('hidden');
-            } else {
-                countEl.classList.add('hidden');
-            }
-        }
-
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cartItems');
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="text-gray-400 text-center py-12">Your cart is empty bestie! 😢</p>';
-            } else {
-                const total = cart.reduce((sum, item) => sum + item.price, 0);
-                cartItems.innerHTML = `
-                    <div class="space-y-4 mb-6">
-                        ${cart.map(item => `
-                            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 flex justify-between items-center">
-                                <div>
-                                    <p class="font-semibold">${item.name}</p>
-                                    <p class="text-sm text-purple-300">₹${item.price}</p>
-                                </div>
-                                <button onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="border-t border-white/20 pt-4 mb-6">
-                        <div class="flex justify-between text-xl font-bold">
-                            <span>Total:</span>
-                            <span class="gradient-text">₹${total}</span>
-                        </div>
-                    </div>
-                    <button class="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold py-4 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-105">
-                        Proceed to Checkout 🚀
-                    </button>
-                    <button onclick="closeCart()" class="w-full mt-3 text-gray-400 hover:text-white">
-                        Continue Shopping
-                    </button>
-                `;
-            }
-        }
-
-        function showAddedFeedback(id) {
-            const btn = document.querySelector(`[data-item-id="${id}"]`);
-            if (btn) {
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Added to Cart!';
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                }, 2000);
-            }
-        }
-
-        document.getElementById('cartBtn').addEventListener('click', openCart);
-
-        function updateCountdown() {
-            const target = new Date('2026-02-17T00:00:00');
-            const now = new Date();
-            const diff = target - now;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        function scrollToSection(id) {
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function toggleClass(className) {
-            const content = document.getElementById(`class-${className}`);
-            const chevron = document.getElementById(`chevron-${className}`);
-            const otherClass = className === '10th' ? '12th' : '10th';
-            const otherContent = document.getElementById(`class-${otherClass}`);
-            const otherChevron = document.getElementById(`chevron-${otherClass}`);
-            
-            // If clicking the same class that's already open, close it
-            if (currentOpenClass === className && !content.classList.contains('hidden')) {
-                content.classList.add('hidden');
-                chevron.style.transform = 'rotate(0deg)';
-                currentOpenClass = null;
-                return;
-            }
-            
-            // Close other class if open
-            if (currentOpenClass && currentOpenClass !== className) {
-                otherContent.classList.add('hidden');
-                otherChevron.style.transform = 'rotate(0deg)';
-            }
-            
-            // Open this class
-            content.classList.remove('hidden');
-            content.classList.add('animate-fadeIn');
-            chevron.style.transform = 'rotate(180deg)';
-            currentOpenClass = className;
-            
-            if (className === '10th') {
-                loadSubjects10th();
-            }
-        }
-
-        function loadSubjects10th() {
-            const subjects = [
+        // ========== DATA LAYER ==========
+        const DATA = {
+            subjects10th: [
                 { id: 'math-10', name: 'Mathematics', icon: '📐', features: ['Complete Notes', 'All Formulas Sheet', 'All Imp Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
                 { id: 'science-10', name: 'Science', icon: '🔬', features: ['Complete Notes', 'Diagrams With Labels', 'All Reactions & Equations', 'Previous Year Questions', 'Sample Papers'], price: 29 },
                 { id: 'sst-10', name: 'Social Science', icon: '🌍', features: ['Complete Notes', 'Important Dates & Events', 'All Important Maps', 'Previous Year Questions', 'Sample Papers'], price: 29 },
                 { id: 'english-10', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 },
                 { id: 'hindi-10', name: 'Hindi', icon: '🖊️', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
-            ];
-
-            const bundles = [
-                { 
-                    id: 'quick-10', 
-                    name: 'Quick Revision Pack', 
-                    subtitle: 'All 5 Subjects • Perfect for Fast Prep', 
-                    features: ['Maths + Science + SST + English + Hindi', 'Formulas + Reactions + Diagrams', 'Maps + Dates & Events', 'Grammar + Writing Formats', 'Previous Year Questions', 'Sample Papers'],
-                    originalPrice: 145, 
-                    price: 69, 
-                    savings: 52, 
-                    badge: 'MOST POPULAR 🔥', 
-                    color: 'purple' 
-                },
-                { 
-                    id: 'mega-10', 
-                    name: 'Mega Bundle Pack', 
-                    subtitle: 'Complete Boards Domination Package', 
-                    features: ['All From Quick Revision', 'High-Weightage Questions Bank', 'Solved Practice Papers', 'Shortcuts & Memory Tricks', '1 Night Special Material'],
-                    bonuses: ['💎 Toppers Secret Tips', '💎 Time Management', '💎 Common Mistakes To Avoid'],
-                    originalPrice: 175, 
-                    price: 99, 
-                    savings: 43, 
-                    badge: 'BEST VALUE 👑', 
-                    color: 'gold' 
-                }
-            ];
-
-            renderSubjects(subjects, 'subjects-10th');
-            renderBundles(bundles, 'bundles-10th');
-        }
-
-        function selectStream(stream, event) {
-            event.stopPropagation();
-            const clickedBtn = event.currentTarget;
-            const isAlreadySelected = clickedBtn.classList.contains('from-purple-600');
-            
-            // Reset all buttons
-            document.querySelectorAll('.stream-btn').forEach(btn => {
-                btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
-                btn.classList.add('bg-white/5', 'border-white/10');
-            });
-            
-            // If clicking the same stream, collapse it
-            if (isAlreadySelected && selectedStream === stream) {
-                selectedStream = null;
-                document.getElementById('subjects-12th').innerHTML = '';
-                document.getElementById('bundles-12th-container').classList.add('hidden');
-                return;
-            }
-            
-            // Select the new stream
-            clickedBtn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
-            clickedBtn.classList.remove('bg-white/5', 'border-white/10');
-            
-            selectedStream = stream;
-            loadSubjects12th(stream);
-        }
-
-        function loadSubjects12th(stream) {
-            const subjectsData = {
+            ],
+            bundles10th: [
+                { id: 'quick-10', name: 'Quick Revision Pack', subtitle: 'All 5 Subjects • Perfect for Fast Prep', features: ['Maths + Science + SST + English + Hindi', 'Formulas + Reactions + Diagrams', 'Maps + Dates & Events', 'Grammar + Writing Formats', 'Previous Year Questions', 'Sample Papers'], originalPrice: 145, price: 69, savings: 52, badge: 'MOST POPULAR 🔥', color: 'purple' },
+                { id: 'mega-10', name: 'Mega Bundle Pack', subtitle: 'Complete Boards Domination Package', features: ['All From Quick Revision', 'High-Weightage Questions Bank', 'Solved Practice Papers', 'Shortcuts & Memory Tricks', '1 Night Special Material'], bonuses: ['💎 Toppers Secret Tips', '💎 Time Management', '💎 Common Mistakes To Avoid'], originalPrice: 175, price: 99, savings: 43, badge: 'BEST VALUE 👑', color: 'gold' }
+            ],
+            subjects12th: {
                 PCM: [
                     { id: 'physics-pcm', name: 'Physics', icon: '⚛️', features: ['Complete Notes', 'All Formulas Sheet', 'All Derivations Step-by-Step', 'Previous Year Questions', 'Sample Papers'], price: 29 },
                     { id: 'chemistry-pcm', name: 'Chemistry', icon: '🧪', features: ['Complete Notes', 'All Important Reactions', 'Equations & Balancing', 'Previous Year Questions', 'Sample Papers'], price: 29 },
@@ -506,182 +269,479 @@
                     { id: 'geography', name: 'Geography', icon: '🗺️', features: ['Complete Notes', 'All Important Maps', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
                     { id: 'english-arts', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
                 ]
-            };
-
-            const streamNames = {
+            },
+            streamNames: {
                 PCM: 'Physics + Chemistry + Maths + English',
                 PCB: 'Physics + Chemistry + Biology + English',
                 Commerce: 'Accountancy + Business Studies + Economics + English',
                 Arts: 'History + Political Science + Geography + English'
-            };
+            },
+            testimonials: [
+                { name: 'Priya Malhotra', class: 'Class 12th PCM', score: '94.8%', text: 'OMG these notes are literally perfect! Physics mein 96 aaye, chemistry 95! 😍', gender: 'girl' },
+                { name: 'Ananya Gupta', class: 'Class 10th CBSE', score: '93.2%', text: 'Maths aur Science dono mein 95+ laaye! Best decision ever yaar 💯', gender: 'girl' },
+                { name: 'Aarav Singh', class: 'Class 12th Commerce', score: '89.6%', text: 'Accounts ke formats sabhi yahan the, exams mein bohot help hui bhai', gender: 'boy' },
+                { name: 'Ishita Sharma', class: 'Class 10th', score: '95.4%', text: 'Last minute revision ke liye game changer! SST 97, Hindi 94 🔥', gender: 'girl' },
+                { name: 'Diya Patel', class: 'Class 12th PCB', score: '92.8%', text: 'Biology ke diagrams itne clear the ki ek baar dekhne se yaad ho gaye! 98 marks ❤️', gender: 'girl' },
+                { name: 'Saanvi Reddy', class: 'Class 10th', score: '91.6%', text: 'Science practicals aur theory dono cover tha perfectly! Mom dad bohot khush 🥰', gender: 'girl' },
+                { name: 'Riya Kapoor', class: 'Class 12th Arts', score: '93.8%', text: 'Political Science aur History notes life saver the yaar! 95+ dono mein ✨', gender: 'girl' },
+                { name: 'Kavya Joshi', class: 'Class 10th', score: '94.2%', text: 'Maths formulas organized way mein the, exam hall mein koi tension nahi! 🎯', gender: 'girl' },
+                { name: 'Aditi Verma', class: 'Class 12th PCM', score: '96.4%', text: 'Chemistry reactions aur Physics derivations perfect the! Topper ban gayi 👑', gender: 'girl' },
+                { name: 'Arjun Mehta', class: 'Class 10th', score: '88.4%', text: 'English writing formats aur Hindi grammar notes bohot useful the bro', gender: 'boy' },
+                { name: 'Tanvi Singh', class: 'Class 12th Commerce', score: '92.6%', text: 'Business Studies ke case studies exactly exam pattern jaisi thi! Love it 💕', gender: 'girl' },
+                { name: 'Rohan Kumar', class: 'Class 10th', score: '87.2%', text: 'Sample papers solve karke confidence level 100% ho gaya! Thank you so much 🙏', gender: 'boy' },
+                { name: 'Naina Khanna', class: 'Class 12th PCB', score: '94.6%', text: 'Bio practicals aur Chemistry notes perfect combination! 96 aur 95 respectively 🌟', gender: 'girl' },
+                { name: 'Aadhya Desai', class: 'Class 10th', score: '90.8%', text: 'Maps practice aur dates timeline se SST mein 93 aaye easily! Best notes ever 💜', gender: 'girl' },
+                { name: 'Vivaan Sharma', class: 'Class 12th Arts', score: '86.4%', text: 'Economics graphs aur History timeline bohot helpful tha exam mein', gender: 'boy' },
+                { name: 'Myra Agarwal', class: 'Class 10th', score: '93.6%', text: 'English literature summaries perfection! Boards mein 94 laaye 📚✨', gender: 'girl' },
+                { name: 'Pihu Bansal', class: 'Class 12th PCM', score: '95.2%', text: 'Physics PYQs practice karke pattern samajh aa gaya completely! 97 marks 🚀', gender: 'girl' },
+                { name: 'Karan Patel', class: 'Class 10th', score: '85.8%', text: 'Science diagrams aur reactions clearly explain kiya hua tha! 90+ both terms 💖', gender: 'boy' },
+                { name: 'Reyansh Gupta', class: 'Class 12th Commerce', score: '84.8%', text: 'Accountancy ratios aur formats helpful the, passing easily ho gaya', gender: 'boy' },
+                { name: 'Aanya Chopra', class: 'Class 10th', score: '96.2%', text: 'Sab subjects ke notes organized the perfectly! School topper ban gayi main 🏆👑', gender: 'girl' }
+            ]
+        };
 
-            const bundles = [
-                { 
-                    id: 'quick-12', 
-                    name: 'Quick Revision Pack', 
-                    subtitle: 'All Stream Subjects • Last Minute Savior',
-                    features: [streamNames[stream], 'Formulas + Reactions + Equations', 'Grammar + Writing Formats', 'Previous Year Questions', 'Sample Papers'],
-                    originalPrice: 116, 
-                    price: 69, 
-                    savings: 40, 
-                    badge: 'MOST POPULAR 🔥', 
-                    color: 'purple' 
-                },
-                { 
-                    id: 'mega-12', 
-                    name: 'Mega Bundle Pack', 
-                    subtitle: 'Complete Success Package',
-                    features: ['All From Quick Revision', 'High-Weightage Questions Bank', 'Solved Practice Papers', 'Shortcuts & Memory Tricks', '1 Night Special Material'],
-                    bonuses: ['💎 Toppers Secret Tips', '💎 Time Management', '💎 Common Mistakes To Avoid'],
-                    originalPrice: 145, 
-                    price: 99, 
-                    savings: 32, 
-                    badge: 'BEST VALUE 👑', 
-                    color: 'gold' 
+        // ========== STATE MANAGEMENT ==========
+        const State = {
+            cart: [],
+            selectedStream: null,
+            currentOpenClass: null,
+            customerEmail: ''
+        };
+
+        // ========== CART MANAGEMENT ==========
+        const Cart = {
+            add(item) {
+                if (!State.cart.find(i => i.id === item.id)) {
+                    State.cart.push(item);
+                    this.updateCount();
+                    UI.showAddedFeedback(item.id);
                 }
-            ];
+            },
+            remove(id) {
+                State.cart = State.cart.filter(item => item.id !== id);
+                this.updateCount();
+                UI.updateCartDisplay();
+            },
+            updateCount() {
+                const el = document.getElementById('cartCount');
+                if (State.cart.length > 0) {
+                    el.textContent = State.cart.length;
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            },
+            getTotal() {
+                return State.cart.reduce((sum, item) => sum + item.price, 0);
+            }
+        };
 
-            renderSubjects(subjectsData[stream], 'subjects-12th');
-            renderBundles(bundles, 'bundles-12th');
-            document.getElementById('bundles-12th-container').classList.remove('hidden');
-        }
-
-        function renderSubjects(subjects, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = subjects.map(subject => `
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 hover:border-purple-500/50 transition-all hover:scale-105">
-                    <div class="flex items-start justify-between mb-3 md:mb-4">
-                        <div>
-                            <h4 class="text-lg md:text-xl font-bold flex items-center gap-2">
-                                <span class="text-2xl md:text-3xl">${subject.icon}</span>
-                                ${subject.name}
-                            </h4>
+        // ========== UI LAYER ==========
+        const UI = {
+            openCart() {
+                document.getElementById('cartSidebar').classList.remove('hidden');
+                this.updateCartDisplay();
+            },
+            closeCart() {
+                document.getElementById('cartSidebar').classList.add('hidden');
+            },
+            updateCartDisplay() {
+                const el = document.getElementById('cartItems');
+                if (State.cart.length === 0) {
+                    el.innerHTML = '<p class="text-gray-400 text-center py-12">Your cart is empty bestie! 😢</p>';
+                } else {
+                    const total = Cart.getTotal();
+                    el.innerHTML = `
+                        <div class="space-y-4 mb-6">
+                            ${State.cart.map(item => `
+                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 flex justify-between items-center">
+                                    <div>
+                                        <p class="font-semibold">${item.name}</p>
+                                        <p class="text-sm text-purple-300">₹${item.price}</p>
+                                    </div>
+                                    <button onclick="Cart.remove('${item.id}')" class="text-red-400 hover:text-red-300">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            `).join('')}
                         </div>
-                        <div class="text-right">
-                            <p class="text-xl md:text-2xl font-bold text-purple-400">₹${subject.price}</p>
+                        <div class="border-t border-white/20 pt-4 mb-6">
+                            <div class="flex justify-between text-xl font-bold">
+                                <span>Total:</span>
+                                <span class="gradient-text">₹${total}</span>
+                            </div>
                         </div>
-                    </div>
-                    <ul class="space-y-1.5 md:space-y-2 mb-3 md:mb-4">
-                        ${subject.features.map(feature => `
-                            <li class="text-xs md:text-sm text-gray-300 flex items-start gap-2">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>${feature}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                    <button data-item-id="${subject.id}" onclick="addToCart({id: '${subject.id}', name: '${subject.name}', price: ${subject.price}})" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-2.5 md:py-3 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2 text-sm md:text-base">
-                        <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        Add to Cart
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function renderBundles(bundles, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = bundles.map(bundle => `
-                <div class="bg-white/5 backdrop-blur-md border-2 ${bundle.color === 'gold' ? 'border-yellow-500/50' : 'border-purple-500/50'} rounded-xl p-6 relative">
-                    <div class="absolute -top-3 right-4 ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} px-4 py-1 rounded-full text-sm font-bold animate-pulse">
-                        ${bundle.badge}
-                    </div>
-                    <h5 class="text-2xl font-bold mb-1">${bundle.name}</h5>
-                    <p class="text-gray-400 text-sm mb-4">${bundle.subtitle}</p>
-                    
-                    <ul class="space-y-2 mb-4">
-                        ${bundle.features.map(feature => `
-                            <li class="text-sm text-gray-300 flex items-start gap-2">
-                                <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>${feature}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                    
-                    ${bundle.bonuses ? `
-                        <div class="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-lg p-4 mb-4">
-                            <p class="text-yellow-400 font-bold text-sm mb-2">🎁 EXCLUSIVE BONUSES:</p>
-                            <ul class="space-y-1">
-                                ${bundle.bonuses.map(bonus => `
-                                    <li class="text-xs text-yellow-200">${bonus}</li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                    
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="text-gray-500 line-through">₹${bundle.originalPrice}</span>
-                        <span class="text-4xl font-bold ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-400 to-orange-400' : 'bg-gradient-to-r from-purple-400 to-pink-400'} bg-clip-text text-transparent">
-                            ₹${bundle.price}
-                        </span>
-                        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Save ${bundle.savings}%</span>
-                    </div>
-                    <button data-item-id="${bundle.id}" onclick="addToCart({id: '${bundle.id}', name: '${bundle.name}', price: ${bundle.price}})" class="w-full ${bundle.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} text-white font-bold py-4 rounded-lg hover:shadow-lg transition-all hover:scale-105">
-                        ${bundle.color === 'gold' ? 'Get Mega Pack 👑' : 'Get Quick Pack 🚀'}
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        const testimonials = [
-            { name: 'Priya Malhotra', class: 'Class 12th PCM', score: '94.8%', text: 'OMG these notes are literally perfect! Physics mein 96 aaye, chemistry 95! 😍', gender: 'girl' },
-            { name: 'Ananya Gupta', class: 'Class 10th CBSE', score: '93.2%', text: 'Maths aur Science dono mein 95+ laaye! Best decision ever yaar 💯', gender: 'girl' },
-            { name: 'Aarav Singh', class: 'Class 12th Commerce', score: '89.6%', text: 'Accounts ke formats sabhi yahan the, exams mein bohot help hui bhai', gender: 'boy' },
-            { name: 'Ishita Sharma', class: 'Class 10th', score: '95.4%', text: 'Last minute revision ke liye game changer! SST 97, Hindi 94 🔥', gender: 'girl' },
-            { name: 'Diya Patel', class: 'Class 12th PCB', score: '92.8%', text: 'Biology ke diagrams itne clear the ki ek baar dekhne se yaad ho gaye! 98 marks ❤️', gender: 'girl' },
-            { name: 'Saanvi Reddy', class: 'Class 10th', score: '91.6%', text: 'Science practicals aur theory dono cover tha perfectly! Mom dad bohot khush 🥰', gender: 'girl' },
-            { name: 'Riya Kapoor', class: 'Class 12th Arts', score: '93.8%', text: 'Political Science aur History notes life saver the yaar! 95+ dono mein ✨', gender: 'girl' },
-            { name: 'Kavya Joshi', class: 'Class 10th', score: '94.2%', text: 'Maths formulas organized way mein the, exam hall mein koi tension nahi! 🎯', gender: 'girl' },
-            { name: 'Aditi Verma', class: 'Class 12th PCM', score: '96.4%', text: 'Chemistry reactions aur Physics derivations perfect the! Topper ban gayi 👑', gender: 'girl' },
-            { name: 'Arjun Mehta', class: 'Class 10th', score: '88.4%', text: 'English writing formats aur Hindi grammar notes bohot useful the bro', gender: 'boy' },
-            { name: 'Tanvi Singh', class: 'Class 12th Commerce', score: '92.6%', text: 'Business Studies ke case studies exactly exam pattern jaisi thi! Love it 💕', gender: 'girl' },
-            { name: 'Rohan Kumar', class: 'Class 10th', score: '87.2%', text: 'Sample papers solve karke confidence level 100% ho gaya! Thank you so much 🙏', gender: 'boy' },
-            { name: 'Naina Khanna', class: 'Class 12th PCB', score: '94.6%', text: 'Bio practicals aur Chemistry notes perfect combination! 96 aur 95 respectively 🌟', gender: 'girl' },
-            { name: 'Aadhya Desai', class: 'Class 10th', score: '90.8%', text: 'Maps practice aur dates timeline se SST mein 93 aaye easily! Best notes ever 💜', gender: 'girl' },
-            { name: 'Vivaan Sharma', class: 'Class 12th Arts', score: '86.4%', text: 'Economics graphs aur History timeline bohot helpful tha exam mein', gender: 'boy' },
-            { name: 'Myra Agarwal', class: 'Class 10th', score: '93.6%', text: 'English literature summaries perfection! Boards mein 94 laaye 📚✨', gender: 'girl' },
-            { name: 'Pihu Bansal', class: 'Class 12th PCM', score: '95.2%', text: 'Physics PYQs practice karke pattern samajh aa gaya completely! 97 marks 🚀', gender: 'girl' },
-            { name: 'Karan Patel', class: 'Class 10th', score: '85.8%', text: 'Science diagrams aur reactions clearly explain kiya hua tha! 90+ both terms 💖', gender: 'boy' },
-            { name: 'Reyansh Gupta', class: 'Class 12th Commerce', score: '84.8%', text: 'Accountancy ratios aur formats helpful the, passing easily ho gaya', gender: 'boy' },
-            { name: 'Aanya Chopra', class: 'Class 10th', score: '96.2%', text: 'Sab subjects ke notes organized the perfectly! School topper ban gayi main 🏆👑', gender: 'girl' }
-        ];
-
-        const girls = testimonials.filter(t => t.gender === 'girl').slice(0, 12);
-        const boys = testimonials.filter(t => t.gender === 'boy').slice(0, 8);
-        const allTestimonials = [...girls, ...boys];
-
-        function createTestimonialCard(t) {
-            return `
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 w-64 md:w-80 hover:border-purple-500/50 transition-all flex-shrink-0">
-                    <div class="flex items-center gap-1 mb-2 md:mb-3">
-                        ${[...Array(5)].map(() => `
-                            <svg class="w-3 h-3 md:w-4 md:h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        <button onclick="Payment.checkout()" class="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold py-4 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-105">
+                            Proceed to Checkout 🚀
+                        </button>
+                        <button onclick="UI.closeCart()" class="w-full mt-3 text-gray-400 hover:text-white">
+                            Continue Shopping
+                        </button>
+                    `;
+                }
+            },
+            showAddedFeedback(id) {
+                const btn = document.querySelector(`[data-item-id="${id}"]`);
+                if (btn) {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '<svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Added!';
+                    setTimeout(() => btn.innerHTML = orig, 2000);
+                }
+            },
+            scrollTo(id) {
+                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+            },
+            showEmailModal() {
+                const modal = document.createElement('div');
+                modal.id = 'emailModal';
+                modal.className = 'fixed inset-0 z-[70] flex items-center justify-center';
+                modal.innerHTML = `
+                    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="UI.closeEmailModal()"></div>
+                    <div class="relative bg-gradient-to-b from-slate-800 to-slate-900 border border-purple-500/30 rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl animate-fadeIn">
+                        <button onclick="UI.closeEmailModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
-                        `).join('')}
+                        </button>
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Almost There! 🎉</h3>
+                        <p class="text-gray-300 mb-6">Enter your email to receive your notes</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Email Address</label>
+                                <input type="email" id="emailInput" placeholder="your@email.com" 
+                                    class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-all">
+                                <p id="emailError" class="text-red-400 text-sm mt-1 hidden">Please enter a valid email</p>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Confirm Email</label>
+                                <input type="email" id="confirmEmailInput" placeholder="your@email.com" 
+                                    class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-all">
+                                <p id="confirmEmailError" class="text-red-400 text-sm mt-1 hidden">Emails don't match</p>
+                            </div>
+                            
+                            <button onclick="Payment.verifyEmail()" class="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold py-4 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-105">
+                                Verify & Proceed to Payment 🚀
+                            </button>
+                        </div>
                     </div>
-                    <p class="text-gray-300 mb-3 md:mb-4 italic text-sm md:text-base">"${t.text}"</p>
-                    <div class="border-t border-white/10 pt-3 md:pt-4">
-                        <p class="font-bold text-sm md:text-base">${t.name}</p>
-                        <p class="text-xs md:text-sm text-gray-400">${t.class}</p>
-                        <p class="text-xs md:text-sm text-purple-400 font-semibold">${t.score}</p>
+                `;
+                document.body.appendChild(modal);
+                setTimeout(() => document.getElementById('emailInput').focus(), 100);
+            },
+            closeEmailModal() {
+                document.getElementById('emailModal')?.remove();
+            },
+            showLoading() {
+                const modal = document.createElement('div');
+                modal.id = 'loadingModal';
+                modal.className = 'fixed inset-0 z-[70] flex items-center justify-center';
+                modal.innerHTML = `
+                    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                    <div class="relative bg-gradient-to-b from-slate-800 to-slate-900 border border-purple-500/30 rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl text-center">
+                        <div class="animate-spin rounded-full h-16 w-16 border-4 border-purple-500 border-t-transparent mx-auto mb-4"></div>
+                        <h3 class="text-xl font-bold gradient-text">Preparing Payment...</h3>
+                        <p class="text-gray-300 mt-2">Please wait a moment</p>
                     </div>
-                </div>
-            `;
-        }
+                `;
+                document.body.appendChild(modal);
+            },
+            hideLoading() {
+                document.getElementById('loadingModal')?.remove();
+            }
+        };
 
-        const row1 = allTestimonials.slice(0, 10);
-        const row2 = allTestimonials.slice(10, 20);
+        // ========== PAYMENT LAYER ==========
+        const Payment = {
+            checkout() {
+                if (State.cart.length === 0) {
+                    alert('Your cart is empty! Add some notes first 📚');
+                    return;
+                }
+                UI.showEmailModal();
+            },
+            verifyEmail() {
+                const email = document.getElementById('emailInput').value.trim();
+                const confirmEmail = document.getElementById('confirmEmailInput').value.trim();
+                const emailError = document.getElementById('emailError');
+                const confirmEmailError = document.getElementById('confirmEmailError');
+                
+                emailError.classList.add('hidden');
+                confirmEmailError.classList.add('hidden');
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    emailError.textContent = 'Please enter a valid email address';
+                    emailError.classList.remove('hidden');
+                    return;
+                }
+                
+                if (email !== confirmEmail) {
+                    confirmEmailError.textContent = "Emails don't match";
+                    confirmEmailError.classList.remove('hidden');
+                    return;
+                }
+                
+                State.customerEmail = email;
+                UI.closeEmailModal();
+                this.initiate();
+            },
+            async initiate() {
+                const total = Cart.getTotal();
+                const items = State.cart.map(item => item.name).join(', ');
+                
+                UI.showLoading();
+                
+                const paymentData = {
+                    amount: total,
+                    currency: 'INR',
+                    customer_email: State.customerEmail,
+                    product_description: items,
+                    order_id: 'ORD-' + Date.now(),
+                    redirect_url: window.location.origin + '/success.html',
+                    webhook_url: 'YOUR_BACKEND_WEBHOOK_URL',
+                    metadata: {
+                        cart_items: JSON.stringify(State.cart),
+                        customer_email: State.customerEmail
+                    }
+                };
+                
+                try {
+                    const response = await fetch('https://api.unopay.me/v1/payments', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_UNOPAY_API_KEY'
+                        },
+                        body: JSON.stringify(paymentData)
+                    });
+                    
+                    if (!response.ok) throw new Error('Payment failed');
+                    
+                    const data = await response.json();
+                    
+                    localStorage.setItem('lastOrder', JSON.stringify({
+                        email: State.customerEmail,
+                        items: State.cart,
+                        total: total,
+                        orderId: paymentData.order_id
+                    }));
+                    
+                    window.location.href = data.payment_url;
+                    
+                } catch (error) {
+                    console.error('Payment error:', error);
+                    UI.hideLoading();
+                    alert('Payment initialization failed. Please try again or contact support.');
+                }
+            }
+        };
 
-        const row1Container = document.getElementById('testimonials-row1');
-        const row2Container = document.getElementById('testimonials-row2');
+        // ========== APP LOGIC ==========
+        const App = {
+            toggleClass(className) {
+                const content = document.getElementById(`class-${className}`);
+                const chevron = document.getElementById(`chevron-${className}`);
+                const otherClass = className === '10th' ? '12th' : '10th';
+                const otherContent = document.getElementById(`class-${otherClass}`);
+                const otherChevron = document.getElementById(`chevron-${otherClass}`);
+                
+                if (State.currentOpenClass === className && !content.classList.contains('hidden')) {
+                    content.classList.add('hidden');
+                    chevron.style.transform = 'rotate(0deg)';
+                    State.currentOpenClass = null;
+                    return;
+                }
+                
+                if (State.currentOpenClass && State.currentOpenClass !== className) {
+                    otherContent.classList.add('hidden');
+                    otherChevron.style.transform = 'rotate(0deg)';
+                }
+                
+                content.classList.remove('hidden');
+                content.classList.add('animate-fadeIn');
+                chevron.style.transform = 'rotate(180deg)';
+                State.currentOpenClass = className;
+                
+                if (className === '10th') {
+                    Render.subjects(DATA.subjects10th, 'subjects-10th');
+                    Render.bundles(DATA.bundles10th, 'bundles-10th');
+                }
+            },
+            selectStream(stream, event) {
+                event.stopPropagation();
+                const btn = event.currentTarget;
+                const isSelected = btn.classList.contains('from-purple-600');
+                
+                document.querySelectorAll('.stream-btn').forEach(b => {
+                    b.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
+                    b.classList.add('bg-white/5', 'border-white/10');
+                });
+                
+                if (isSelected && State.selectedStream === stream) {
+                    State.selectedStream = null;
+                    document.getElementById('subjects-12th').innerHTML = '';
+                    document.getElementById('bundles-12th-container').classList.add('hidden');
+                    return;
+                }
+                
+                btn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
+                btn.classList.remove('bg-white/5', 'border-white/10');
+                
+                State.selectedStream = stream;
+                
+                const bundles = [
+                    { id: 'quick-12', name: 'Quick Revision Pack', subtitle: 'All Stream Subjects • Last Minute Savior', features: [DATA.streamNames[stream], 'Formulas + Reactions + Equations', 'Grammar + Writing Formats', 'Previous Year Questions', 'Sample Papers'], originalPrice: 116, price: 69, savings: 40, badge: 'MOST POPULAR 🔥', color: 'purple' },
+                    { id: 'mega-12', name: 'Mega Bundle Pack', subtitle: 'Complete Success Package', features: ['All From Quick Revision', 'High-Weightage Questions Bank', 'Solved Practice Papers', 'Shortcuts & Memory Tricks', '1 Night Special Material'], bonuses: ['💎 Toppers Secret Tips', '💎 Time Management', '💎 Common Mistakes To Avoid'], originalPrice: 145, price: 99, savings: 32, badge: 'BEST VALUE 👑', color: 'gold' }
+                ];
+                
+                Render.subjects(DATA.subjects12th[stream], 'subjects-12th');
+                Render.bundles(bundles, 'bundles-12th');
+                document.getElementById('bundles-12th-container').classList.remove('hidden');
+            }
+        };
 
-        row1Container.innerHTML = row1.map(createTestimonialCard).join('') + row1.map(createTestimonialCard).join('');
-        row2Container.innerHTML = row2.map(createTestimonialCard).join('') + row2.map(createTestimonialCard).join('');
+        // ========== RENDER LAYER ==========
+        const Render = {
+            subjects(subjects, containerId) {
+                document.getElementById(containerId).innerHTML = subjects.map(s => `
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 hover:border-purple-500/50 transition-all hover:scale-105">
+                        <div class="flex items-start justify-between mb-3 md:mb-4">
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold flex items-center gap-2">
+                                    <span class="text-2xl md:text-3xl">${s.icon}</span>
+                                    ${s.name}
+                                </h4>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl md:text-2xl font-bold text-purple-400">₹${s.price}</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-1.5 md:space-y-2 mb-3 md:mb-4">
+                            ${s.features.map(f => `
+                                <li class="text-xs md:text-sm text-gray-300 flex items-start gap-2">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>${f}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <button data-item-id="${s.id}" onclick='Cart.add(${JSON.stringify(s)})' class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-2.5 md:py-3 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2 text-sm md:text-base">
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            Add to Cart
+                        </button>
+                    </div>
+                `).join('');
+            },
+            bundles(bundles, containerId) {
+                document.getElementById(containerId).innerHTML = bundles.map(b => `
+                    <div class="bg-white/5 backdrop-blur-md border-2 ${b.color === 'gold' ? 'border-yellow-500/50' : 'border-purple-500/50'} rounded-xl p-6 relative">
+                        <div class="absolute -top-3 right-4 ${b.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} px-4 py-1 rounded-full text-sm font-bold animate-pulse">
+                            ${b.badge}
+                        </div>
+                        <h5 class="text-2xl font-bold mb-1">${b.name}</h5>
+                        <p class="text-gray-400 text-sm mb-4">${b.subtitle}</p>
+                        
+                        <ul class="space-y-2 mb-4">
+                            ${b.features.map(f => `
+                                <li class="text-sm text-gray-300 flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>${f}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        
+                        ${b.bonuses ? `
+                            <div class="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-lg p-4 mb-4">
+                                <p class="text-yellow-400 font-bold text-sm mb-2">🎁 EXCLUSIVE BONUSES:</p>
+                                <ul class="space-y-1">
+                                    ${b.bonuses.map(bonus => `<li class="text-xs text-yellow-200">${bonus}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                        
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-gray-500 line-through">₹${b.originalPrice}</span>
+                            <span class="text-4xl font-bold ${b.color === 'gold' ? 'bg-gradient-to-r from-yellow-400 to-orange-400' : 'bg-gradient-to-r from-purple-400 to-pink-400'} bg-clip-text text-transparent">
+                                ₹${b.price}
+                            </span>
+                            <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Save ${b.savings}%</span>
+                        </div>
+                        <button data-item-id="${b.id}" onclick='Cart.add(${JSON.stringify({id: b.id, name: b.name, price: b.price})})' class="w-full ${b.color === 'gold' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-purple-600 to-pink-600'} text-white font-bold py-4 rounded-lg hover:shadow-lg transition-all hover:scale-105">
+                            ${b.color === 'gold' ? 'Get Mega Pack 👑' : 'Get Quick Pack 🚀'}
+                        </button>
+                    </div>
+                `).join('');
+            },
+            testimonials() {
+                const girls = DATA.testimonials.filter(t => t.gender === 'girl').slice(0, 12);
+                const boys = DATA.testimonials.filter(t => t.gender === 'boy').slice(0, 8);
+                const all = [...girls, ...boys];
+                
+                const createCard = (t) => `
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 w-64 md:w-80 hover:border-purple-500/50 transition-all flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-2 md:mb-3">
+                            ${[...Array(5)].map(() => `
+                                <svg class="w-3 h-3 md:w-4 md:h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                            `).join('')}
+                        </div>
+                        <p class="text-gray-300 mb-3 md:mb-4 italic text-sm md:text-base">"${t.text}"</p>
+                        <div class="border-t border-white/10 pt-3 md:pt-4">
+                            <p class="font-bold text-sm md:text-base">${t.name}</p>
+                            <p class="text-xs md:text-sm text-gray-400">${t.class}</p>
+                            <p class="text-xs md:text-sm text-purple-400 font-semibold">${t.score}</p>
+                        </div>
+                    </div>
+                `;
+                
+                const row1 = all.slice(0, 10);
+                const row2 = all.slice(10, 20);
+                
+                const r1 = document.getElementById('testimonials-row1');
+                const r2 = document.getElementById('testimonials-row2');
+                
+                r1.innerHTML = row1.map(createCard).join('') + row1.map(createCard).join('');
+                r2.innerHTML = row2.map(createCard).join('') + row2.map(createCard).join('');
+                
+                r1.classList.add('scroll-left');
+                r2.classList.add('scroll-right');
+            }
+        };
+
+        // ========== COUNTDOWN TIMER ==========
+        const Timer = {
+            update() {
+                const target = new Date('2026-02-17T00:00:00');
+                const now = new Date();
+                const diff = target - now;
+
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((diff / 1000 / 60) % 60);
+                const s = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('days').textContent = String(d).padStart(2, '0');
+                document.getElementById('hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+            }
+        };
+
+        // ========== INITIALIZATION ==========
+        document.getElementById('cartBtn').addEventListener('click', UI.openCart);
+        Timer.update();
+        setInterval(Timer.update, 1000);
+        Render.testimonials();
     </script>
 </body>
 </html>
