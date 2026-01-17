@@ -149,6 +149,26 @@
             <span class="font-semibold">1289 Students Already Winning Their Boards</span>
         </div>
 
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-6 md:mb-8 text-xs md:text-sm">
+            <div class="bg-white/5 backdrop-blur-md border border-green-500/30 rounded-full px-3 md:px-4 py-1.5 md:py-2 flex items-center gap-2">
+                <span class="text-green-400">✓</span>
+                <span>100% CBSE Pattern</span>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md border border-blue-500/30 rounded-full px-3 md:px-4 py-1.5 md:py-2 flex items-center gap-2">
+                <span class="text-blue-400">✓</span>
+                <span>Toppers Verified</span>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md border border-purple-500/30 rounded-full px-3 md:px-4 py-1.5 md:py-2 flex items-center gap-2">
+                <span class="text-purple-400">✓</span>
+                <span>Updated 2026</span>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md border border-orange-500/30 rounded-full px-3 md:px-4 py-1.5 md:py-2 flex items-center gap-2">
+                <span class="text-orange-400">✓</span>
+                <span>Instant Download</span>
+            </div>
+        </div>
+
         <button onclick="scrollToSection('class-selection')" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-5 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-2 inline-flex items-center gap-3">
             Get Notes Now 🚀
         </button>
@@ -234,11 +254,11 @@
         <p class="text-center text-gray-300 mb-8 md:mb-12 text-base md:text-lg px-4">Real Results from Real Students</p>
 
         <div class="space-y-4 md:space-y-6">
-            <div class="overflow-x-auto pb-4 hide-scrollbar">
-                <div id="testimonials-row1" class="flex gap-4 md:gap-6 px-4"></div>
+            <div class="scroll-container pb-4">
+                <div id="testimonials-row1" class="flex gap-4 md:gap-6 auto-scroll"></div>
             </div>
-            <div class="overflow-x-auto pb-4 hide-scrollbar">
-                <div id="testimonials-row2" class="flex gap-4 md:gap-6 px-4"></div>
+            <div class="scroll-container pb-4">
+                <div id="testimonials-row2" class="flex gap-4 md:gap-6 auto-scroll-right"></div>
             </div>
         </div>
     </section>
@@ -396,11 +416,11 @@
 
         function loadSubjects10th() {
             const subjects = [
-                { id: 'math-10', name: 'Mathematics', icon: '📐', features: ['Chapter-wise Important Questions', 'All Formulas Sheet', 'PYQs (Last 10 Years)', 'Sample Papers', 'Quick Revision Notes'], price: 29 },
-                { id: 'science-10', name: 'Science', icon: '🔬', features: ['Short Notes for All Chapters', 'Diagrams & Illustrations', 'All Reactions & Equations', 'Formulas Sheet', 'PYQs + Sample Papers'], price: 29 },
-                { id: 'sst-10', name: 'Social Science', icon: '🌍', features: ['Chapter-wise Short Notes', 'Important Dates & Events', 'Maps & Diagrams Practice', 'PYQs', 'Sample Papers'], price: 29 },
-                { id: 'english-10', name: 'English', icon: '📖', features: ['Chapter Summaries', 'Grammar Rules & Tricks', 'Letter/Article Formats', 'PYQs', 'Sample Papers'], price: 29 },
-                { id: 'hindi-10', name: 'Hindi', icon: '🖊️', features: ['Chapter Summaries (सारांश)', 'Grammar (व्याकरण)', 'Letter/Essay Formats', 'PYQs', 'Sample Papers'], price: 29 }
+                { id: 'math-10', name: 'Mathematics', icon: '📐', features: ['Complete Notes', 'All Formulas Sheet', 'All Imp Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                { id: 'science-10', name: 'Science', icon: '🔬', features: ['Complete Notes', 'Diagrams With Labels', 'All Reactions & Equations', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                { id: 'sst-10', name: 'Social Science', icon: '🌍', features: ['Complete Notes', 'Important Dates & Events', 'All Important Maps', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                { id: 'english-10', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                { id: 'hindi-10', name: 'Hindi', icon: '🖊️', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
             ];
 
             const bundles = [
@@ -408,7 +428,7 @@
                     id: 'quick-10', 
                     name: 'Quick Revision Pack', 
                     subtitle: 'All 5 Subjects • Perfect for Fast Prep', 
-                    features: ['Mathematics + Science Complete Notes', 'SST Maps & Timeline Practice', 'English + Hindi Writing Formats', 'All PYQs & Sample Papers', 'Formula Sheets for Quick Revision'],
+                    features: ['Maths + Science + SST + English + Hindi', 'Formulas + Reactions + Diagrams', 'Maps + Dates & Events', 'Grammar + Writing Formats', 'Previous Year Questions', 'Sample Papers'],
                     originalPrice: 145, 
                     price: 69, 
                     savings: 52, 
@@ -417,10 +437,10 @@
                 },
                 { 
                     id: 'mega-10', 
-                    name: 'Mega Pack', 
+                    name: 'Mega Bundle Pack', 
                     subtitle: 'Complete Boards Domination Package', 
-                    features: ['Everything in Quick Revision Pack', 'Chapter-wise Video Explanations Links', 'Last Minute Cheat Sheets', 'Exam Day Strategy Guide', 'Answer Writing Techniques'],
-                    bonuses: ['💎 Bonus: Topper\'s Secret Tips PDF', '💎 Bonus: Time Management Planner', '💎 Bonus: Stress-Free Study Schedule'],
+                    features: ['All From Quick Revision', 'High-Weightage Questions Bank', 'Solved Practice Papers', 'Shortcuts & Memory Tricks', '1 Night Special Material'],
+                    bonuses: ['💎 Toppers Secret Tips', '💎 Time Management', '💎 Common Mistakes To Avoid'],
                     originalPrice: 175, 
                     price: 99, 
                     savings: 43, 
@@ -463,29 +483,36 @@
         function loadSubjects12th(stream) {
             const subjectsData = {
                 PCM: [
-                    { id: 'physics-pcm', name: 'Physics', icon: '⚛️', features: ['All Derivations Step-by-Step', 'Complete Formulas Sheet', 'PYQs (Last 10 Years)', 'Practicals & Diagrams', 'Sample Papers'], price: 29 },
-                    { id: 'chemistry-pcm', name: 'Chemistry', icon: '🧪', features: ['All Reactions & Mechanisms', 'Equations & Balancing', 'Formulas & Concepts', 'PYQs + Practicals', 'Sample Papers'], price: 29 },
-                    { id: 'math-pcm', name: 'Mathematics', icon: '📐', features: ['Concept-wise Notes', 'All Formulas & Theorems', 'PYQs (Last 10 Years)', 'Important Questions', 'Sample Papers'], price: 29 },
-                    { id: 'english-pcm', name: 'English', icon: '📖', features: ['Chapter Summaries', 'Grammar & Writing Skills', 'Notice/Article Formats', 'PYQs', 'Sample Papers'], price: 29 }
+                    { id: 'physics-pcm', name: 'Physics', icon: '⚛️', features: ['Complete Notes', 'All Formulas Sheet', 'All Derivations Step-by-Step', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'chemistry-pcm', name: 'Chemistry', icon: '🧪', features: ['Complete Notes', 'All Important Reactions', 'Equations & Balancing', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'math-pcm', name: 'Mathematics', icon: '📐', features: ['Complete Notes', 'All Formulas Sheet', 'All Imp Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'english-pcm', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
                 ],
                 PCB: [
-                    { id: 'physics-pcb', name: 'Physics', icon: '⚛️', features: ['All Derivations Simplified', 'Complete Formulas', 'PYQs (10 Years)', 'Practicals Guide', 'Sample Papers'], price: 29 },
-                    { id: 'chemistry-pcb', name: 'Chemistry', icon: '🧪', features: ['Organic + Inorganic Notes', 'All Reactions', 'Formulas & Concepts', 'PYQs + Practicals', 'Sample Papers'], price: 29 },
-                    { id: 'biology-pcb', name: 'Biology', icon: '🧬', features: ['Chapter-wise Diagrams', 'Short & Long Notes', 'PYQs (10 Years)', 'Practicals & Experiments', 'Sample Papers'], price: 29 },
-                    { id: 'english-pcb', name: 'English', icon: '📖', features: ['Chapter Summaries', 'Grammar Essentials', 'Writing Formats', 'PYQs', 'Sample Papers'], price: 29 }
+                    { id: 'physics-pcb', name: 'Physics', icon: '⚛️', features: ['Complete Notes', 'All Formulas Sheet', 'All Derivations Step-by-Step', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'chemistry-pcb', name: 'Chemistry', icon: '🧪', features: ['Complete Notes', 'All Important Reactions', 'Equations & Balancing', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'biology-pcb', name: 'Biology', icon: '🧬', features: ['Complete Notes', 'Important Diagrams', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'english-pcb', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
                 ],
                 Commerce: [
-                    { id: 'accountancy', name: 'Accountancy', icon: '📊', features: ['All Formats & Statements', 'Ratio Analysis', 'Journal Entries', 'PYQs', 'Sample Papers'], price: 29 },
-                    { id: 'business', name: 'Business Studies', icon: '💼', features: ['Case Studies & Examples', 'Concept-wise Notes', 'Diagrams & Charts', 'PYQs', 'Sample Papers'], price: 29 },
-                    { id: 'economics-com', name: 'Economics', icon: '📈', features: ['All Diagrams & Graphs', 'Theory in Points', 'Macro + Micro Notes', 'PYQs', 'Sample Papers'], price: 29 },
-                    { id: 'english-com', name: 'English', icon: '📖', features: ['Chapter Summaries', 'Grammar & Writing', 'Business Formats', 'PYQs', 'Sample Papers'], price: 29 }
+                    { id: 'accountancy', name: 'Accountancy', icon: '📊', features: ['Complete Notes', 'All Formats', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'business', name: 'Business Studies', icon: '💼', features: ['Complete Notes', 'Case Studies', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'economics-com', name: 'Economics', icon: '📈', features: ['Complete Notes', 'Graphs & Formula', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'english-com', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
                 ],
                 Arts: [
-                    { id: 'history', name: 'History', icon: '🏛️', features: ['Timeline & Important Dates', 'Event-wise Notes', 'Maps Practice', 'PYQs', 'Sample Papers'], price: 29 },
-                    { id: 'polsci', name: 'Political Science', icon: '🗳️', features: ['Concept-wise Notes', 'Diagrams & Charts', 'Case Studies', 'PYQs', 'Sample Papers'], price: 29 },
-                    { id: 'economics-arts', name: 'Economics', icon: '📈', features: ['All Diagrams', 'Theory Notes', 'Numerical Practice', 'PYQs', 'Sample Papers'], price: 29 },
-                    { id: 'english-arts', name: 'English', icon: '📖', features: ['Chapter Summaries', 'Grammar Rules', 'Writing Formats', 'PYQs', 'Sample Papers'], price: 29 }
+                    { id: 'history', name: 'History', icon: '🏛️', features: ['Complete Notes', 'Important Dates & Events', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'polsci', name: 'Political Science', icon: '🗳️', features: ['Complete Notes', 'Case Studies', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'geography', name: 'Geography', icon: '🗺️', features: ['Complete Notes', 'All Important Maps', 'Important Questions', 'Previous Year Questions', 'Sample Papers'], price: 29 },
+                    { id: 'english-arts', name: 'English', icon: '📖', features: ['All Chapter Summaries', 'Grammar Rules & Tricks', 'All Formats (Letter, Article..)', 'Previous Year Questions', 'Sample Papers'], price: 29 }
                 ]
+            };
+
+            const streamNames = {
+                PCM: 'Physics + Chemistry + Maths + English',
+                PCB: 'Physics + Chemistry + Biology + English',
+                Commerce: 'Accountancy + Business Studies + Economics + English',
+                Arts: 'History + Political Science + Geography + English'
             };
 
             const bundles = [
@@ -493,7 +520,7 @@
                     id: 'quick-12', 
                     name: 'Quick Revision Pack', 
                     subtitle: 'All Stream Subjects • Last Minute Savior',
-                    features: ['Complete Notes for All 4 Subjects', 'Formulas & Key Concepts Sheet', 'All Diagrams & Illustrations', '10 Years PYQs Solved', 'Sample Papers with Solutions'],
+                    features: [streamNames[stream], 'Formulas + Reactions + Equations', 'Grammar + Writing Formats', 'Previous Year Questions', 'Sample Papers'],
                     originalPrice: 116, 
                     price: 69, 
                     savings: 40, 
@@ -502,10 +529,10 @@
                 },
                 { 
                     id: 'mega-12', 
-                    name: 'Mega Pack', 
+                    name: 'Mega Bundle Pack', 
                     subtitle: 'Complete Success Package',
-                    features: ['Everything in Quick Revision Pack', 'Chapter-wise Important Questions', 'Previous Toppers Answer Sheets', 'Exam Strategy & Time Management', 'Answer Writing Framework'],
-                    bonuses: ['💎 Bonus: Subject-wise Topper Interviews', '💎 Bonus: Board Exam Day Checklist', '💎 Bonus: Stress Management Techniques'],
+                    features: ['All From Quick Revision', 'High-Weightage Questions Bank', 'Solved Practice Papers', 'Shortcuts & Memory Tricks', '1 Night Special Material'],
+                    bonuses: ['💎 Toppers Secret Tips', '💎 Time Management', '💎 Common Mistakes To Avoid'],
                     originalPrice: 145, 
                     price: 99, 
                     savings: 32, 
@@ -653,8 +680,8 @@
         const row1Container = document.getElementById('testimonials-row1');
         const row2Container = document.getElementById('testimonials-row2');
 
-        row1Container.innerHTML = row1.map(createTestimonialCard).join('');
-        row2Container.innerHTML = row2.map(createTestimonialCard).join('');
+        row1Container.innerHTML = row1.map(createTestimonialCard).join('') + row1.map(createTestimonialCard).join('');
+        row2Container.innerHTML = row2.map(createTestimonialCard).join('') + row2.map(createTestimonialCard).join('');
     </script>
 </body>
 </html>
