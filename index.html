@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boards? NO Tension!! - Crash Notes for CBSE 10th & 12th</title>
+    <title>Boards? NO Tension!! 🤌🏻 - Crash Notes for CBSE 10th & 12th</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
@@ -161,57 +161,66 @@
         </h2>
         <p class="text-center text-gray-300 mb-12 text-lg">Choose your class and dominate boards 💪</p>
 
-        <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <!-- Class 10th Card -->
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all">
-                <button onclick="toggleClass('10th')" class="w-full text-left">
-                    <div class="flex items-center justify-between mb-6">
+        <div class="max-w-6xl mx-auto">
+            <!-- Class Selection Buttons -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8" id="class-buttons">
+                <button onclick="toggleClass('10th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all text-left">
+                    <div class="flex items-center justify-between">
                         <h3 class="text-3xl font-bold">Class 10th 📚</h3>
                         <svg id="chevron-10th" class="w-6 h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     </div>
                 </button>
-                <div id="class-10th" class="hidden">
-                    <div class="overflow-x-auto pb-4 hide-scrollbar mb-8">
-                        <div id="subjects-10th" class="flex gap-4 w-max"></div>
-                    </div>
-                    <div>
-                        <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                            Save Big with Bundles 💰
-                        </h4>
-                        <div id="bundles-10th" class="space-y-4"></div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Class 12th Card -->
-            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all">
-                <button onclick="toggleClass('12th')" class="w-full text-left">
-                    <div class="flex items-center justify-between mb-6">
+                <button onclick="toggleClass('12th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all text-left">
+                    <div class="flex items-center justify-between">
                         <h3 class="text-3xl font-bold">Class 12th 🎓</h3>
                         <svg id="chevron-12th" class="w-6 h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     </div>
                 </button>
-                <div id="class-12th" class="hidden">
-                    <!-- Stream Selection -->
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <button onclick="selectStream('PCM')" class="stream-btn px-6 py-3 rounded-full font-semibold transition-all bg-white/5 border border-white/10 hover:border-purple-500/50">PCM ⚙️</button>
-                        <button onclick="selectStream('PCB')" class="stream-btn px-6 py-3 rounded-full font-semibold transition-all bg-white/5 border border-white/10 hover:border-purple-500/50">PCB 🩺</button>
-                        <button onclick="selectStream('Commerce')" class="stream-btn px-6 py-3 rounded-full font-semibold transition-all bg-white/5 border border-white/10 hover:border-purple-500/50">Commerce 💼</button>
-                        <button onclick="selectStream('Arts')" class="stream-btn px-6 py-3 rounded-full font-semibold transition-all bg-white/5 border border-white/10 hover:border-purple-500/50">Arts 🎨</button>
-                    </div>
-                    <div class="overflow-x-auto pb-4 hide-scrollbar mb-8">
-                        <div id="subjects-12th" class="flex gap-4 w-max"></div>
-                    </div>
-                    <div id="bundles-12th-container" class="hidden">
-                        <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                            Save Big with Bundles 💰
-                        </h4>
-                        <div id="bundles-12th" class="space-y-4"></div>
-                    </div>
+            </div>
+
+            <!-- Class 10th Content -->
+            <div id="class-10th" class="hidden">
+                <div id="subjects-10th" class="grid md:grid-cols-2 gap-6 mb-8"></div>
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                        Save Big with Bundles 💰
+                    </h4>
+                    <div id="bundles-10th" class="grid md:grid-cols-2 gap-6"></div>
+                </div>
+            </div>
+
+            <!-- Class 12th Content -->
+            <div id="class-12th" class="hidden">
+                <!-- Stream Selection -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <button onclick="selectStream('PCM')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-2xl mb-1">⚙️</div>
+                        <div>PCM</div>
+                    </button>
+                    <button onclick="selectStream('PCB')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-2xl mb-1">🩺</div>
+                        <div>PCB</div>
+                    </button>
+                    <button onclick="selectStream('Commerce')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-2xl mb-1">💼</div>
+                        <div>Commerce</div>
+                    </button>
+                    <button onclick="selectStream('Arts')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-2xl mb-1">🎨</div>
+                        <div>Arts</div>
+                    </button>
+                </div>
+                <div id="subjects-12th" class="grid md:grid-cols-2 gap-6 mb-8"></div>
+                <div id="bundles-12th-container" class="hidden">
+                    <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                        Save Big with Bundles 💰
+                    </h4>
+                    <div id="bundles-12th" class="grid md:grid-cols-2 gap-6"></div>
                 </div>
             </div>
         </div>
@@ -356,7 +365,9 @@
         function toggleClass(className) {
             const content = document.getElementById(`class-${className}`);
             const chevron = document.getElementById(`chevron-${className}`);
+            const buttons = document.getElementById('class-buttons');
             
+            // Close other class if open
             if (currentOpenClass && currentOpenClass !== className) {
                 const otherContent = document.getElementById(`class-${currentOpenClass}`);
                 const otherChevron = document.getElementById(`chevron-${currentOpenClass}`);
@@ -369,11 +380,13 @@
                 content.classList.add('animate-fadeIn');
                 chevron.style.transform = 'rotate(90deg)';
                 currentOpenClass = className;
+                buttons.classList.add('hidden'); // Hide both class buttons
                 if (className === '10th') loadSubjects10th();
             } else {
                 content.classList.add('hidden');
                 chevron.style.transform = 'rotate(0deg)';
                 currentOpenClass = null;
+                buttons.classList.remove('hidden'); // Show both class buttons again
             }
         }
 
@@ -419,11 +432,11 @@
         function selectStream(stream) {
             selectedStream = stream;
             document.querySelectorAll('.stream-btn').forEach(btn => {
-                btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105');
-                btn.classList.add('bg-white/5', 'border', 'border-white/10');
+                btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
+                btn.classList.add('bg-white/5', 'border-white/10');
             });
-            event.target.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105');
-            event.target.classList.remove('bg-white/5', 'border', 'border-white/10');
+            event.target.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
+            event.target.classList.remove('bg-white/5', 'border-white/10');
             
             loadSubjects12th(stream);
         }
@@ -490,7 +503,7 @@
         function renderSubjects(subjects, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = subjects.map(subject => `
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:scale-105 w-80 flex-shrink-0">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:scale-105">
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h4 class="text-xl font-bold flex items-center gap-2">
