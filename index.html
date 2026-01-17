@@ -83,8 +83,8 @@
     </div>
 
     <!-- Cart Button -->
-    <button id="cartBtn" class="fixed top-6 right-6 z-50 bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-110">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button id="cartBtn" class="fixed top-4 right-4 md:top-6 md:right-6 z-[60] bg-gradient-to-r from-purple-600 to-pink-600 p-3 md:p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-110">
+        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
         </svg>
         <span id="cartCount" class="hidden absolute -top-2 -right-2 bg-orange-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">0</span>
@@ -106,8 +106,8 @@
 
     <!-- Header Section -->
     <header class="relative z-10 container mx-auto px-4 pt-12 md:pt-20 pb-8 md:pb-12 text-center">
-        <h1 class="text-4xl md:text-7xl font-extrabold mb-4">
-            <span class="gradient-text" style="text-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(236, 72, 153, 0.6);">
+        <h1 class="text-3xl md:text-7xl font-extrabold mb-4 leading-tight">
+            <span class="gradient-text block md:inline" style="text-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(236, 72, 153, 0.6);">
                 Boards? NO Tension!! 💯
             </span>
         </h1>
@@ -166,18 +166,18 @@
             <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8" id="class-buttons">
                 <button onclick="toggleClass('10th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-xl md:text-3xl font-bold">Class 10th 📚</h3>
+                        <h3 class="text-lg md:text-3xl font-bold">Class 10th 📚</h3>
                         <svg id="chevron-10th" class="w-5 h-5 md:w-6 md:h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </div>
                 </button>
 
                 <button onclick="toggleClass('12th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-xl md:text-3xl font-bold">Class 12th 🎓</h3>
+                        <h3 class="text-lg md:text-3xl font-bold">Class 12th 🎓</h3>
                         <svg id="chevron-12th" class="w-5 h-5 md:w-6 md:h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </div>
                 </button>
@@ -365,7 +365,6 @@
         function toggleClass(className) {
             const content = document.getElementById(`class-${className}`);
             const chevron = document.getElementById(`chevron-${className}`);
-            const buttons = document.getElementById('class-buttons');
             const otherClass = className === '10th' ? '12th' : '10th';
             const otherContent = document.getElementById(`class-${otherClass}`);
             const otherChevron = document.getElementById(`chevron-${otherClass}`);
@@ -375,7 +374,6 @@
                 content.classList.add('hidden');
                 chevron.style.transform = 'rotate(0deg)';
                 currentOpenClass = null;
-                buttons.classList.remove('hidden');
                 return;
             }
             
@@ -388,9 +386,8 @@
             // Open this class
             content.classList.remove('hidden');
             content.classList.add('animate-fadeIn');
-            chevron.style.transform = 'rotate(90deg)';
+            chevron.style.transform = 'rotate(180deg)';
             currentOpenClass = className;
-            buttons.classList.add('hidden');
             
             if (className === '10th') {
                 loadSubjects10th();
@@ -632,7 +629,7 @@
 
         function createTestimonialCard(t) {
             return `
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 w-64 md:w-80 hover:border-purple-500/50 transition-all hover:scale-105 flex-shrink-0">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 w-64 md:w-80 hover:border-purple-500/50 transition-all flex-shrink-0">
                     <div class="flex items-center gap-1 mb-2 md:mb-3">
                         ${[...Array(5)].map(() => `
                             <svg class="w-3 h-3 md:w-4 md:h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20">
