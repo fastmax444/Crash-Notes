@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boards? NO Tension!! 🤌🏻 - Crash Notes for CBSE 10th & 12th</title>
+    <title>Boards? NO Tension!! - Crash Notes for CBSE 10th & 12th</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
@@ -105,21 +105,21 @@
     </div>
 
     <!-- Header Section -->
-    <header class="relative z-10 container mx-auto px-4 pt-20 pb-12 text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 animate-pulse">
-            <span class="gradient-text" style="text-shadow: 0 0 30px rgba(249, 115, 22, 0.5);">
+    <header class="relative z-10 container mx-auto px-4 pt-12 md:pt-20 pb-8 md:pb-12 text-center">
+        <h1 class="text-4xl md:text-7xl font-extrabold mb-4">
+            <span class="gradient-text" style="text-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(236, 72, 153, 0.6);">
                 Boards? NO Tension!! 💯
             </span>
         </h1>
         
-        <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto" style="text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">
+        <p class="text-lg md:text-2xl text-gray-200 mb-6 md:mb-8 max-w-3xl mx-auto">
             Crash Notes, Cheat Sheets & Everything You Need to CRACK Your Boards 🔥
         </p>
 
         <!-- Countdown Timer -->
-        <div class="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-6 max-w-2xl mx-auto mb-8 shadow-2xl animate-pulse">
-            <p class="text-sm font-semibold mb-2">⏰ Boards Starting In...</p>
-            <div id="countdown" class="flex justify-center gap-4 text-3xl md:text-5xl font-bold">
+        <div class="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-4 md:p-6 max-w-2xl mx-auto mb-6 md:mb-8 shadow-2xl">
+            <p class="text-xs md:text-sm font-semibold mb-2">⏰ Boards Starting In...</p>
+            <div id="countdown" class="flex justify-center gap-3 md:gap-4 text-2xl md:text-5xl font-bold">
                 <div class="flex flex-col items-center">
                     <span id="days">00</span>
                     <span class="text-xs mt-1">DAYS</span>
@@ -142,41 +142,41 @@
             </div>
         </div>
 
-        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 inline-flex items-center gap-2 mb-8 shadow-lg">
-            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 md:px-6 py-2 md:py-3 inline-flex items-center gap-2 mb-6 md:mb-8 shadow-lg text-sm md:text-base">
+            <svg class="w-4 h-4 md:w-5 md:h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span class="font-semibold">1289 Students Already Winning Their Boards</span>
         </div>
 
-        <button onclick="scrollToSection('class-selection')" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-2 inline-flex items-center gap-3">
+        <button onclick="scrollToSection('class-selection')" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-5 rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-110 hover:-translate-y-2 inline-flex items-center gap-3">
             Get Notes Now 🚀
         </button>
     </header>
 
     <!-- Class Selection Section -->
-    <section id="class-selection" class="relative z-10 container mx-auto px-4 py-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">
+    <section id="class-selection" class="relative z-10 container mx-auto px-4 py-12 md:py-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4 gradient-text">
             Pick Your Battle ⚡
         </h2>
-        <p class="text-center text-gray-300 mb-12 text-lg">Choose your class and dominate boards 💪</p>
+        <p class="text-center text-gray-300 mb-8 md:mb-12 text-base md:text-lg">Choose your class and dominate boards 💪</p>
 
         <div class="max-w-6xl mx-auto">
             <!-- Class Selection Buttons -->
-            <div class="grid md:grid-cols-2 gap-6 mb-8" id="class-buttons">
-                <button onclick="toggleClass('10th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all text-left">
+            <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8" id="class-buttons">
+                <button onclick="toggleClass('10th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-3xl font-bold">Class 10th 📚</h3>
-                        <svg id="chevron-10th" class="w-6 h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h3 class="text-xl md:text-3xl font-bold">Class 10th 📚</h3>
+                        <svg id="chevron-10th" class="w-5 h-5 md:w-6 md:h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     </div>
                 </button>
 
-                <button onclick="toggleClass('12th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all text-left">
+                <button onclick="toggleClass('12th')" class="class-select-btn bg-white/5 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-8 hover:border-purple-500/50 transition-all text-left">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-3xl font-bold">Class 12th 🎓</h3>
-                        <svg id="chevron-12th" class="w-6 h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h3 class="text-xl md:text-3xl font-bold">Class 12th 🎓</h3>
+                        <svg id="chevron-12th" class="w-5 h-5 md:w-6 md:h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     </div>
@@ -185,60 +185,60 @@
 
             <!-- Class 10th Content -->
             <div id="class-10th" class="hidden">
-                <div id="subjects-10th" class="grid md:grid-cols-2 gap-6 mb-8"></div>
+                <div id="subjects-10th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8"></div>
                 <div>
-                    <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                    <h4 class="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                         Save Big with Bundles 💰
                     </h4>
-                    <div id="bundles-10th" class="grid md:grid-cols-2 gap-6"></div>
+                    <div id="bundles-10th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"></div>
                 </div>
             </div>
 
             <!-- Class 12th Content -->
             <div id="class-12th" class="hidden">
                 <!-- Stream Selection -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    <button onclick="selectStream('PCM')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
-                        <div class="text-2xl mb-1">⚙️</div>
-                        <div>PCM</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
+                    <button onclick="selectStream('PCM', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-xl md:text-2xl mb-1">⚙️</div>
+                        <div class="text-sm md:text-base">PCM</div>
                     </button>
-                    <button onclick="selectStream('PCB')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
-                        <div class="text-2xl mb-1">🩺</div>
-                        <div>PCB</div>
+                    <button onclick="selectStream('PCB', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-xl md:text-2xl mb-1">🩺</div>
+                        <div class="text-sm md:text-base">PCB</div>
                     </button>
-                    <button onclick="selectStream('Commerce')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
-                        <div class="text-2xl mb-1">💼</div>
-                        <div>Commerce</div>
+                    <button onclick="selectStream('Commerce', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-xl md:text-2xl mb-1">💼</div>
+                        <div class="text-sm md:text-base">Commerce</div>
                     </button>
-                    <button onclick="selectStream('Arts')" class="stream-btn px-6 py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
-                        <div class="text-2xl mb-1">🎨</div>
-                        <div>Arts</div>
+                    <button onclick="selectStream('Arts', event)" class="stream-btn px-4 md:px-6 py-3 md:py-4 rounded-xl font-semibold transition-all bg-white/5 border-2 border-white/10 hover:border-purple-500/50 text-center">
+                        <div class="text-xl md:text-2xl mb-1">🎨</div>
+                        <div class="text-sm md:text-base">Arts</div>
                     </button>
                 </div>
-                <div id="subjects-12th" class="grid md:grid-cols-2 gap-6 mb-8"></div>
+                <div id="subjects-12th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8"></div>
                 <div id="bundles-12th-container" class="hidden">
-                    <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                    <h4 class="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                         Save Big with Bundles 💰
                     </h4>
-                    <div id="bundles-12th" class="grid md:grid-cols-2 gap-6"></div>
+                    <div id="bundles-12th" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="relative z-10 py-16 overflow-hidden">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">
+    <section class="relative z-10 py-12 md:py-16 overflow-hidden">
+        <h2 class="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4 gradient-text px-4">
             What Students Are Saying 🗣️
         </h2>
-        <p class="text-center text-gray-300 mb-12 text-lg">Real Results from Real Students</p>
+        <p class="text-center text-gray-300 mb-8 md:mb-12 text-base md:text-lg px-4">Real Results from Real Students</p>
 
-        <div class="space-y-6">
+        <div class="space-y-4 md:space-y-6">
             <div class="testimonial-row overflow-hidden">
-                <div id="testimonials-row1" class="flex gap-6 scroll-left"></div>
+                <div id="testimonials-row1" class="flex gap-4 md:gap-6 scroll-left"></div>
             </div>
             <div class="testimonial-row overflow-hidden">
-                <div id="testimonials-row2" class="flex gap-6 scroll-right"></div>
+                <div id="testimonials-row2" class="flex gap-4 md:gap-6 scroll-right"></div>
             </div>
         </div>
     </section>
@@ -366,27 +366,34 @@
             const content = document.getElementById(`class-${className}`);
             const chevron = document.getElementById(`chevron-${className}`);
             const buttons = document.getElementById('class-buttons');
+            const otherClass = className === '10th' ? '12th' : '10th';
+            const otherContent = document.getElementById(`class-${otherClass}`);
+            const otherChevron = document.getElementById(`chevron-${otherClass}`);
+            
+            // If clicking the same class that's already open, close it
+            if (currentOpenClass === className && !content.classList.contains('hidden')) {
+                content.classList.add('hidden');
+                chevron.style.transform = 'rotate(0deg)';
+                currentOpenClass = null;
+                buttons.classList.remove('hidden');
+                return;
+            }
             
             // Close other class if open
             if (currentOpenClass && currentOpenClass !== className) {
-                const otherContent = document.getElementById(`class-${currentOpenClass}`);
-                const otherChevron = document.getElementById(`chevron-${currentOpenClass}`);
                 otherContent.classList.add('hidden');
                 otherChevron.style.transform = 'rotate(0deg)';
             }
             
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                content.classList.add('animate-fadeIn');
-                chevron.style.transform = 'rotate(90deg)';
-                currentOpenClass = className;
-                buttons.classList.add('hidden'); // Hide both class buttons
-                if (className === '10th') loadSubjects10th();
-            } else {
-                content.classList.add('hidden');
-                chevron.style.transform = 'rotate(0deg)';
-                currentOpenClass = null;
-                buttons.classList.remove('hidden'); // Show both class buttons again
+            // Open this class
+            content.classList.remove('hidden');
+            content.classList.add('animate-fadeIn');
+            chevron.style.transform = 'rotate(90deg)';
+            currentOpenClass = className;
+            buttons.classList.add('hidden');
+            
+            if (className === '10th') {
+                loadSubjects10th();
             }
         }
 
@@ -429,15 +436,30 @@
             renderBundles(bundles, 'bundles-10th');
         }
 
-        function selectStream(stream) {
-            selectedStream = stream;
+        function selectStream(stream, event) {
+            event.stopPropagation();
+            const clickedBtn = event.currentTarget;
+            const isAlreadySelected = clickedBtn.classList.contains('from-purple-600');
+            
+            // Reset all buttons
             document.querySelectorAll('.stream-btn').forEach(btn => {
                 btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
                 btn.classList.add('bg-white/5', 'border-white/10');
             });
-            event.target.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
-            event.target.classList.remove('bg-white/5', 'border-white/10');
             
+            // If clicking the same stream, collapse it
+            if (isAlreadySelected && selectedStream === stream) {
+                selectedStream = null;
+                document.getElementById('subjects-12th').innerHTML = '';
+                document.getElementById('bundles-12th-container').classList.add('hidden');
+                return;
+            }
+            
+            // Select the new stream
+            clickedBtn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'shadow-lg', 'shadow-purple-500/50', 'scale-105', 'border-purple-500');
+            clickedBtn.classList.remove('bg-white/5', 'border-white/10');
+            
+            selectedStream = stream;
             loadSubjects12th(stream);
         }
 
@@ -503,30 +525,30 @@
         function renderSubjects(subjects, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = subjects.map(subject => `
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-all hover:scale-105">
-                    <div class="flex items-start justify-between mb-4">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 hover:border-purple-500/50 transition-all hover:scale-105">
+                    <div class="flex items-start justify-between mb-3 md:mb-4">
                         <div>
-                            <h4 class="text-xl font-bold flex items-center gap-2">
-                                <span class="text-3xl">${subject.icon}</span>
+                            <h4 class="text-lg md:text-xl font-bold flex items-center gap-2">
+                                <span class="text-2xl md:text-3xl">${subject.icon}</span>
                                 ${subject.name}
                             </h4>
                         </div>
                         <div class="text-right">
-                            <p class="text-2xl font-bold text-purple-400">₹${subject.price}</p>
+                            <p class="text-xl md:text-2xl font-bold text-purple-400">₹${subject.price}</p>
                         </div>
                     </div>
-                    <ul class="space-y-2 mb-4">
+                    <ul class="space-y-1.5 md:space-y-2 mb-3 md:mb-4">
                         ${subject.features.map(feature => `
-                            <li class="text-sm text-gray-300 flex items-start gap-2">
-                                <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <li class="text-xs md:text-sm text-gray-300 flex items-start gap-2">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                                 <span>${feature}</span>
                             </li>
                         `).join('')}
                     </ul>
-                    <button data-item-id="${subject.id}" onclick="addToCart({id: '${subject.id}', name: '${subject.name}', price: ${subject.price}})" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button data-item-id="${subject.id}" onclick="addToCart({id: '${subject.id}', name: '${subject.name}', price: ${subject.price}})" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-2.5 md:py-3 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2 text-sm md:text-base">
+                        <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                         Add to Cart
@@ -610,19 +632,19 @@
 
         function createTestimonialCard(t) {
             return `
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 w-80 hover:border-purple-500/50 transition-all hover:scale-105 flex-shrink-0">
-                    <div class="flex items-center gap-1 mb-3">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 w-64 md:w-80 hover:border-purple-500/50 transition-all hover:scale-105 flex-shrink-0">
+                    <div class="flex items-center gap-1 mb-2 md:mb-3">
                         ${[...Array(5)].map(() => `
-                            <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20">
+                            <svg class="w-3 h-3 md:w-4 md:h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20">
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                             </svg>
                         `).join('')}
                     </div>
-                    <p class="text-gray-300 mb-4 italic">"${t.text}"</p>
-                    <div class="border-t border-white/10 pt-4">
-                        <p class="font-bold">${t.name}</p>
-                        <p class="text-sm text-gray-400">${t.class}</p>
-                        <p class="text-sm text-purple-400 font-semibold">${t.score}</p>
+                    <p class="text-gray-300 mb-3 md:mb-4 italic text-sm md:text-base">"${t.text}"</p>
+                    <div class="border-t border-white/10 pt-3 md:pt-4">
+                        <p class="font-bold text-sm md:text-base">${t.name}</p>
+                        <p class="text-xs md:text-sm text-gray-400">${t.class}</p>
+                        <p class="text-xs md:text-sm text-purple-400 font-semibold">${t.score}</p>
                     </div>
                 </div>
             `;
