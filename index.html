@@ -510,6 +510,7 @@
                     order_id: 'ORD-' + Date.now(),
                     redirect_url: window.location.origin + '/success.html',
                     webhook_url: 'https://crash-notes-wheat.vercel.app/api/webhook',
+                    test_mode: true,
                     metadata: {
                         cart_items: JSON.stringify(State.cart),
                         customer_email: State.customerEmail
